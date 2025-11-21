@@ -67,8 +67,7 @@ covid <- labelise(covid, label=list( retail_and_recreation_percent_change_from_b
 continue
 
 ```{r acf}
-covid_acf <- ts(covid, start = c(2020, 1), end = c(2020, 12) , frequency = 12)
-acf(covid_acf)
+
 ```
 
 bla
@@ -86,7 +85,8 @@ bla
 bla
 
 ```{r}
-
+covid_ts <- ts(covid, start=c(2020, 46),end=c(2021, 365), frequency=365)
+covid_ts
 ```
 
 bla
