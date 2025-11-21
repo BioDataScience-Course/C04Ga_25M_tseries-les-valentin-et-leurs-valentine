@@ -1,6 +1,6 @@
 ---
 title: "___"
-author: "Valentin Picart, Jeff Loiseau, Alex Godin, Valentin Vandenbosche"
+author: "Valentin Picart, Jeff Loiseau, Axel Godin, Valentin Vandenbosche"
 format:
   pdf:
     documentclass: report
