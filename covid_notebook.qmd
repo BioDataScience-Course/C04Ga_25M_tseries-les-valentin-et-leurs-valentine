@@ -26,7 +26,11 @@ lang: fr
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets déjà réalisés. -->
 
-...Matériel et méthodes...
+Nous avons utilisé les *Community Mobility Reports* de Google, basés sur des données anonymisées de Google Maps, afin d’analyser les variations de mobilité liées aux mesures COVID-19. Les données mobilisent différentes catégories de lieux (travail, commerces, loisirs, transports, résidentiel).
+
+Les rapports n’étant plus mis à jour depuis octobre 2022, nous avons exploité les données historiques pour la Wallonie sur les années 2020, 2021 et 2022, avec un focus particulier sur 2020. Une application intéractive est disponible à l'adresse suivante <https://dimiter.shinyapps.io/covid-19_mobility/> , permet de visualiser de manière dynamique les données.
+
+L'analyse est réalisée avec la SciViews Box 2025 dans Saturn Cloud (Linux Ubuntu 22.04), utilisant le logiciel R (r R.version.string). Le package {pastecs} version r packageVersion("pastecs") est utilisé pour étudier la série temporelle.
 
 ## Analyses
 
@@ -55,8 +59,6 @@ bla
 bla
 
 # Jeff
-
-bla
 
 ```{r}
 
