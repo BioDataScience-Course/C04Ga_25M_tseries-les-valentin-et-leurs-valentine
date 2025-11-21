@@ -49,14 +49,22 @@ SciViews::R("ts", lang = "fr")
 covid <- read("data/mobility_wallonia.rds")
 ```
 
+# Nettoyage des données
+
+```{r cleannig}
+#Nettoyage du tableau
+covid <- labelise(covid, label=list( retail_and_recreation_percent_change_from_baseline="com_loi",grocery_and_pharmacy_percent_change_from_baseline="alim_pharma", parks_percent_change_from_baseline="parcs", transit_stations_percent_change_from_baseline="tec", workplaces_percent_change_from_baseline="travail", residential_percent_change_from_baseline="residence"))
+```
+
 ### Manipulation de séries temporelles
 
 # Alex
 
 continue
 
-```{r}
-
+```{r acf}
+covid_acf <- ts(covid, start = c(2020, 1), end = c(2020, 12) , frequency = 12)
+acf(covid_acf)
 ```
 
 bla
