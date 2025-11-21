@@ -55,8 +55,9 @@ covid <- read("data/mobility_wallonia.rds")
 
 continue
 
-```{r}
-
+```{r acf}
+covid_acf <- ts(covid, start = c(2020, 1), end = c(2020, 12) , frequency = 12)
+acf(covid_acf)
 ```
 
 bla
