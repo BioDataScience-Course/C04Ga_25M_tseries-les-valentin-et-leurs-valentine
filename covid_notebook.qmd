@@ -37,10 +37,17 @@ lang: fr
 if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
 # Configuration de l'environnement
-SciViews::R("ts")
+SciViews::R("ts", lang = "fr")
 ```
 
 <!--% Ajoutez le nombre de chunks que vous souhaitez. Répartissez-vous le travail correctement. Structurez la section en partie avec des titres explicites de niveau trois.-->
+
+# Importation
+
+```{r import}
+# Importation
+covid <- read("data/mobility_wallonia.rds")
+```
 
 ### Manipulation de séries temporelles
 
