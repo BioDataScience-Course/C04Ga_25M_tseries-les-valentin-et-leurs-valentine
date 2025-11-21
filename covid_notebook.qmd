@@ -41,19 +41,34 @@ L'analyse est réalisée avec la SciViews Box 2025 dans Saturn Cloud (Linux Ubun
 if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
 # Configuration de l'environnement
-SciViews::R("ts")
+SciViews::R("ts", lang = "fr")
 ```
 
 <!--% Ajoutez le nombre de chunks que vous souhaitez. Répartissez-vous le travail correctement. Structurez la section en partie avec des titres explicites de niveau trois.-->
+
+# Importation
+
+```{r import}
+# Importation
+covid <- read("data/mobility_wallonia.rds")
+```
+
+# Nettoyage des données
+
+```{r cleannig}
+#Nettoyage du tableau
+covid <- labelise(covid, label=list( retail_and_recreation_percent_change_from_baseline="com_loi",grocery_and_pharmacy_percent_change_from_baseline="alim_pharma", parks_percent_change_from_baseline="parcs", transit_stations_percent_change_from_baseline="tec", workplaces_percent_change_from_baseline="travail", residential_percent_change_from_baseline="residence"))
+```
 
 ### Manipulation de séries temporelles
 
 # Alex
 
-bla
+continue
 
-```{r}
-
+```{r acf}
+covid_acf <- ts(covid, start = c(2020, 1), end = c(2020, 12) , frequency = 12)
+acf(covid_acf)
 ```
 
 bla
@@ -81,7 +96,9 @@ bla
 bla
 
 ```{r}
-
+covid_ts_Valou <- ts(covid, start = c(2021, 1), end = c(2022, 1), frequency = 12)
+statsl_2021 <- stat.slide(covid_ts_Val[, "date"])
+statsl_2012
 ```
 
 bla
