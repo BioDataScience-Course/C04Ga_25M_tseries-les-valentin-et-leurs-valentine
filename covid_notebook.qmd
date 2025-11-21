@@ -86,7 +86,9 @@ bla
 bla
 
 ```{r}
-
+covid_ts_Valou <- ts(covid, start = c(2021, 1), end = c(2022, 1), frequency = 12)
+statsl_2021 <- stat.slide(covid_ts_Val[, "date"])
+statsl_2012
 ```
 
 bla
