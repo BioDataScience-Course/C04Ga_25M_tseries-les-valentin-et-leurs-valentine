@@ -1,6 +1,6 @@
 ---
-title: "Demande à chat"
-author: "Jeff Loiseau"
+title: "Impact de la COVID-19 sur les déplacements de personnes en Wallonie"
+author: "Alex Godin, Jeff Loiseau, Valentin Picart, Valentin Vandenbosche"
 format:
   html:
     code-fold: true

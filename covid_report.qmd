@@ -1,5 +1,5 @@
 ---
-title: "___"
+title: "Impact de la COVID-19 sur les déplacements de personnes en Wallonie"
 author: "___, ___, ___, ___"
 format:
   pdf:
