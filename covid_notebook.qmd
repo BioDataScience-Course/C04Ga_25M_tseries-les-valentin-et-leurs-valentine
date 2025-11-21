@@ -76,10 +76,7 @@ bla
 # Jeff
 
 ```{r}
-covid_ts <- ts(read("marbio", package = "pastecs"))
-statsl <- stat.slide(1:68, marbio_ts[, "ClausocalanusA"],
-  xmin = 0, n = 7, deltat = 10)
-statsl
+covid_ts <- ts(covid , 
 ```
 
 bla
