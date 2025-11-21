@@ -53,7 +53,7 @@ covid <- read("data/mobility_wallonia.rds")
 
 # Alex
 
-bla
+continue
 
 ```{r}
 
