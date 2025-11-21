@@ -1,6 +1,6 @@
 ---
 title: "Impact de la COVID-19 sur les déplacements de personnes en Wallonie"
-author: "___, ___, ___, ___"
+author: "Valentin Picart, Jeff Loiseau, Alex Godin, Valentin Vandenbosche"
 format:
   pdf:
     documentclass: report
