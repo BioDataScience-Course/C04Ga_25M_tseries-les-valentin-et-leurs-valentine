@@ -100,7 +100,10 @@ bla
 # Jeff
 
 ```{r}
-covid
+covidwj <- covidw %>% 
+  filter(!weekdays %in% c("Saturday", "Sunday"))
+covid_j <- ts(covidwj$travail, start = c(2020, 1),  end = c(2021, 365), frequency = 365)
+plot(covid_j)
 ```
 
 bla
