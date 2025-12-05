@@ -58,6 +58,13 @@ covid <- read("data/mobility_wallonia.rds")
 ```{r cleannig}
 #Nettoyage du tableau
 covid <- labelise(covid, label=list( retail_and_recreation_percent_change_from_baseline="com_loi",grocery_and_pharmacy_percent_change_from_baseline="alim_pharma", parks_percent_change_from_baseline="parcs", transit_stations_percent_change_from_baseline="tec", workplaces_percent_change_from_baseline="travail", residential_percent_change_from_baseline="residence"))
+covid <- covid %>%
+  rename(com_loi = retail_and_recreation_percent_change_from_baseline,
+    alim_pharma = grocery_and_pharmacy_percent_change_from_baseline,
+    parcs = parks_percent_change_from_baseline,
+    tec = transit_stations_percent_change_from_baseline,
+    travail = workplaces_percent_change_from_baseline,
+    residence = residential_percent_change_from_baseline)
 ```
 
 ### Manipulation de séries temporelles
@@ -75,7 +82,8 @@ bla
 # Jeff
 
 ```{r}
-covid_ts <- ts(covid , 
+covids <- covid %>%
+  rename(com_loi = retail_and_recreation_percent_change_from_baseline)
 ```
 
 bla
