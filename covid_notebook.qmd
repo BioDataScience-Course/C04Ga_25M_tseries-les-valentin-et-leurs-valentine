@@ -143,7 +143,7 @@ covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequ
 plot(covid_parcs_ts)
 ```
 
-bla
+On voit qu'il y a deux pics, on peut essayer de les analyser.
 
 ### Analyse de séries temporelles
 
