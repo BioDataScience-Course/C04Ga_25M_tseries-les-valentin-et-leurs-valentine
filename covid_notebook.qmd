@@ -97,8 +97,7 @@ bla
 # Jeff
 
 ```{r}
-covids <- covid %>%
-  rename(com_loi = retail_and_recreation_percent_change_from_baseline)
+covid
 ```
 
 bla
