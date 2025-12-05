@@ -128,8 +128,9 @@ bla
 bla
 
 ```{r tsp}
-covid_com_loi_ts <- ts(covid$com_loi, start = c(2020, 46), end = c(2021, 365), frequency = 365)
-plot(covid_com_loi_ts)
+covidwe_com_loi_ts <- ts(covidwe$com_loi, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+covidwe_tsp <- aggregate(covidwe_com_loi_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covidwe_tsp)
 ```
 
 bla
