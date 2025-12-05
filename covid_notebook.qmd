@@ -114,11 +114,11 @@ bla
 
 # Valentin V
 
-bla
+Caractérisation de la mobilité dans les parcs durant les deux vagues de la pandémie de COVID :
 
 ```{r}
-covid_2021_ts <- ts(covid$parcs, start = c(2021, 1),  end = c(2021, 365), frequency = 365)
-plot(covid_2021_ts)
+covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+plot(covid_parcs_ts)
 ```
 
 bla
