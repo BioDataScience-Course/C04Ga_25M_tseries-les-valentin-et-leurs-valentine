@@ -103,7 +103,7 @@ plot(covidwe_ts2)
 
 # Alex
 
-Caractérisation d ela mobilité dans les transports en commun durant les deux phases de la pandémie de la COVID :
+Caractérisation de la mobilité dans les transports en commun durant les deux phases de la pandémie de la COVID :
 
 ```{r acf}
 covid_tec_ts <- ts(covid$tec, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
@@ -127,9 +127,9 @@ bla
 
 bla
 
-```{r}
-covid_ts <- ts(covid, start=c(2020, 46),end=c(2021, 365), frequency=365)
-head(covid_ts)
+```{r tsp}
+covid_tec_tsp <- ts(covidwe$tec, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+plot(covid_tec_tsp)
 ```
 
 bla
