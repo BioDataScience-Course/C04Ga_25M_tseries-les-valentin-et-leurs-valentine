@@ -127,9 +127,9 @@ bla
 
 bla
 
-```{r}
-covid_tsp <- ts(covidwe, start=c(2020, 46),end=c(2021, 365), frequency=365)
-head(covid_ts)
+```{r tsp}
+covid_tec_tsp <- ts(covid$tec, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+plot(covid_tec_tsp)
 ```
 
 bla
