@@ -138,6 +138,12 @@ covidwe_tsp <- aggregate(covidwe_com_loi_ts, 52, FUN = collapse::fmean, ts.eps =
 plot(covidwe_tsp)
 ```
 
+```{r parcs_tsp}
+covidwe_parcs_ts <- ts(covidwe$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+covidwe_tsp2 <- aggregate(covidwe_parcs_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covidwe_tsp2)
+```
+
 bla
 
 # Valentin V
