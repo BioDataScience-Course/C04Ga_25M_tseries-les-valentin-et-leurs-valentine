@@ -93,12 +93,11 @@ bla
 
 # Valentin V
 
-bla
+Caractérisation de la mobilité dans les parcs en 2021 :
 
 ```{r}
-covid_ts_Valou <- ts(covid, start = c(2021, 1), end = c(2022, 1), frequency = 12)
-statsl_2021 <- stat.slide(covid_ts_Val[, "date"])
-statsl_2021
+covid_2021_ts <- ts(covid$parks_percent_change_from_baseline, start = c(2021, 1),  end = c(2021, 365), frequency = 365)
+plot(covid_2021_ts)
 ```
 
 bla
