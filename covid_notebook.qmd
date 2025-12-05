@@ -127,7 +127,7 @@ bla
 bla
 
 ```{r}
-covid_ts <- ts(covid, start=c(2020, 46),end=c(2021, 365), frequency=365)
+covid_tsp <- ts(covidwe, start=c(2020, 46),end=c(2021, 365), frequency=365)
 head(covid_ts)
 ```
 
