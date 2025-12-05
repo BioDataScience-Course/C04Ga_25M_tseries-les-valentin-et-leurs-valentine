@@ -82,8 +82,22 @@ plot(covidw_ts)
 covidw_ts2 <- aggregate(covidw_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
 plot(covidw_ts2)
 
-# Sélection uniquement des week-ends
-covidw_weekend <- covidw[covidw$weekdays %in% c("Saturday", "Sunday"), ]
+# Copie de la série initiale sous un autre nom
+covidwe <- covid
+
+# Calcul des jours de la semaine
+covidwe$weekdays <- weekdays(as.POSIXct(covidwe$date))
+
+# Les données des jours de semaine sont remplacées par des valeurs manquantes
+covidwe[!(covidwe$weekdays %in% c("Saturday", "Sunday")), 2:7] <- NA
+
+# La série temporelle est créée (début le 15 février 2020 = 46e jour de l'année 2020)
+covidwe_ts <- ts(covidwe$parcs, start = c(2020, 46), frequency = 365)
+plot(covidwe_ts)
+
+# Agrégation par moyenne des valeurs par semaine
+covidwe_ts2 <- aggregate(covidwe_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covidwe_ts2)
 
 ```
 
