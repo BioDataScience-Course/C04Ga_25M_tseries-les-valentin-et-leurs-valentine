@@ -77,7 +77,7 @@ covidw$weekdays <- weekdays(as.POSIXct(covidw$date))
 # Les données du week-end sont remplacées par des valeurs manquantes
 covidw[covidw$weekdays == "Saturday" | covidw$weekdays == "Sunday" , 2:7] <- NA 
 # La série temporelle est créée (début le 15 février 2020 = 46e jour de l'année 2020)
-covidw_ts <- ts(covidw$parks_percent_change_from_baseline, start = c(2020, 46), frequency = 365)
+covidw_ts <- ts(covidw$parcs, start = c(2020, 46), frequency = 365)
 plot(covidw_ts)
 # Aggrégation par moyenne des valeurs par semaine
 covidw_ts2 <- aggregate(covidw_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
