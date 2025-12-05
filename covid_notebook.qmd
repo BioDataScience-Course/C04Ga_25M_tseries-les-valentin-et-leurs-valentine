@@ -94,7 +94,7 @@ bla
 
 ```{r}
 covid_ts <- ts(covid, start=c(2020, 46),end=c(2021, 365), frequency=365)
-covid_ts
+head(covid_ts)
 ```
 
 bla
@@ -106,7 +106,7 @@ bla
 ```{r}
 covid_ts_Valou <- ts(covid, start = c(2021, 1), end = c(2022, 1), frequency = 12)
 statsl_2021 <- stat.slide(covid_ts_Val[, "date"])
-statsl_2012
+statsl_2021
 ```
 
 bla
