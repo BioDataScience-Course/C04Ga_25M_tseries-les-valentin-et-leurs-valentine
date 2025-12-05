@@ -81,6 +81,10 @@ plot(covidw_ts)
 # Aggrégation par moyenne des valeurs par semaine
 covidw_ts2 <- aggregate(covidw_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
 plot(covidw_ts2)
+
+# Sélection uniquement des week-ends
+covidw_weekend <- covidw[covidw$weekdays %in% c("Saturday", "Sunday"), ]
+
 ```
 
 # Alex
