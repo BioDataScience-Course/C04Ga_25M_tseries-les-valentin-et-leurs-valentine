@@ -103,10 +103,11 @@ plot(covidwe_ts2)
 
 # Alex
 
-continue
+Caractérisation de la mobilité dans les transports en commun durant les deux phases de la pandémie de la COVID :
 
 ```{r acf}
-
+covid_tec_ts <- ts(covid$tec, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
+plot(covid_tec_ts)
 ```
 
 bla
@@ -131,23 +132,24 @@ as.POSIXct((time(covid_j)[covid_j< -70]-1970)*60*60*24*365.25)
 
 bla
 
-```{r}
-covid_ts <- ts(covid, start=c(2020, 46),end=c(2021, 365), frequency=365)
-head(covid_ts)
+```{r tsp}
+covidwe_com_loi_ts <- ts(covidwe$com_loi, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+covidwe_tsp <- aggregate(covidwe_com_loi_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covidwe_tsp)
 ```
 
 bla
 
 # Valentin V
 
-bla
+Caractérisation de la mobilité dans les parcs durant les deux vagues de la pandémie de COVID :
 
 ```{r}
-covid_2021_ts <- ts(covid$parcs, start = c(2021, 1),  end = c(2021, 365), frequency = 365)
-plot(covid_2021_ts)
+covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+plot(covid_parcs_ts)
 ```
 
-bla
+On voit qu'il y a deux pics, on peut essayer de les analyser.
 
 ### Analyse de séries temporelles
 
