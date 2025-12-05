@@ -179,10 +179,10 @@ bla
 
 # Valentin V
 
-bla
+Autocorrélation
 
 ```{r}
-
+acf(covid_parcs_ts)
 ```
 
 bla
