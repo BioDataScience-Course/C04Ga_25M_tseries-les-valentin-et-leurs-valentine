@@ -104,7 +104,7 @@ bla
 Caractérisation de la mobilité dans les parcs en 2021 :
 
 ```{r}
-covid_2021_ts <- ts(covid$parks_percent_change_from_baseline, start = c(2021, 1),  end = c(2021, 365), frequency = 365)
+covid_2021_ts <- ts(covid$parcs, start = c(2021, 1),  end = c(2021, 365), frequency = 365)
 plot(covid_2021_ts)
 ```
 
