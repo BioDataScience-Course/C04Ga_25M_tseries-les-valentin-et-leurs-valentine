@@ -115,7 +115,7 @@ Une diminution flagrante est observable aux alentours de mi mars 2020, ceci est 
 
 La fonction ts() a été utilisée pour obtenir notre jeu de données visualisé correctement dans le temps.
 
-La fonction aggregate() a été utilisée afin de lisser le graphique afin qu'il soit plus facilement interprétable
+La fonction aggregate() a été utilisée afin de lisser le graphique afin qu'il soit plus facilement interprétable.
 
 # Jeff
 
@@ -177,7 +177,7 @@ plot(trend_tec2)
 
 ```
 
-Le test de tendance, basé sur la série temporelle étudiant l'effet de la Covid sur les transports, montre une tendance positive significative (ligne verticale en dehors de la distribution simulée) après l'évenement du premier confinement. Cela indique que la mobilité en transports en commun a effectivement augmenté au cours de la période 2020–2021, confirmant la reprise progressive de la mobilité après le choc initial des confinements.
+Le test de tendance, basé sur la série temporelle étudiant l'effet de la Covid sur les transports, montre une tendance positive significative (ligne verticale en dehors de la distribution simulée) après l'évenement du premier confinement. Cela indique que la mobilité en transport a effectivement augmenté au cours de la période 2020–2021, confirmant la reprise progressive de la mobilité après le choc initial des confinements.
 
 La séparation des données après le confinement a été faite dans un objet ts et ensuite un trend.test() a été utilisé pour établir la tendance.
 
@@ -220,7 +220,13 @@ bla
 bla
 
 ```{r}
+decomp_tec <- tsd(covid_tec, method = "average", type = "additive", order = 6, times = 3)
+plot(decomp_tec, col = 1:3)
+```
 
+```{r}
+tec_extract <- extract(decomp_tec, components = "filtered")
+plot(tec_extract)
 ```
 
 # Jeff
