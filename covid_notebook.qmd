@@ -103,14 +103,19 @@ plot(covidwe_ts2)
 
 # Alex
 
-Caractérisation de la mobilité dans les transports en commun durant les deux phases de la pandémie de la COVID :
+Caractérisation de la mobilité dans les transports en commun durant la pandémie de la COVID :
 
 ```{r covidtec}
 covid_tec_ts <- ts(covid$tec, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
-plot(covid_tec_ts)
+covid_tec <- aggregate(covid_tec_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covid_tec) 
 ```
 
-bla
+Une diminution flagrante est observable aux alentours de mi mars 2020, ceci est dû au premier confinement, les transports étaient, presque ou entièrement interrompu. Ensuite, une phase d'augmentation s'en suit et elle durera jusque mai 2020, où une phase de plateau a lieu. Une deuxième diminution progressive jusqu'en 2021 est la cause d'un second confinement (2 novembre 2020). Cela revient à la normale progressivement, et meme un pic plus élevé qu'avant l'arrivée du Covid est observé. Une dernière petite diminution s'établit jusqu'en 2020 suivant ce pic avant de stagner.
+
+La fonction ts() a été utilisée pour obtenir notre jeu de données visualisé correctement dans le temps.
+
+La fonction aggregate() a été utilisée afin de lisser le graphique afin qu'il soit plus facilement interprétable
 
 # Jeff
 
@@ -163,11 +168,18 @@ On voit qu'il y a deux pics, on peut essayer de les analyser.
 
 bla
 
-```{r acftec}
-acf(covid_tec_ts)
+```{r trend tec}
+covid_tec_ts2 <- ts(covid$tec, start = c(2020, 80),  end = c(2021, 365), frequency = 365)
+
+set.seed(2000)
+trend_tec2 <- trend.test(covid_tec2, R = 999)
+plot(trend_tec2)
+
 ```
 
-bla
+Le test de tendance, basé sur la série temporelle étudiant l'effet de la Covid sur les transports, montre une tendance positive significative (ligne verticale en dehors de la distribution simulée) après l'évenement du premier confinement. Cela indique que la mobilité en transports en commun a effectivement augmenté au cours de la période 2020–2021, confirmant la reprise progressive de la mobilité après le choc initial des confinements.
+
+La séparation des données après le confinement a été faite dans un objet ts et ensuite un trend.test() a été utilisé pour établir la tendance.
 
 # Jeff
 
