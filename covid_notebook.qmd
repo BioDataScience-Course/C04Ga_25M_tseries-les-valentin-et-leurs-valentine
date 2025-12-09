@@ -175,9 +175,14 @@ L’objectif de cette analyse est d’évaluer l’impact de la pandémie de COV
 
 Aucune distinction n’est opérée entre les jours de semaine et les week-ends. Cette décision repose sur l’hypothèse que les dynamiques de fréquentation des parcs demeurent relativement homogènes tout au long de la semaine, et que la séparation entre weekend et semaine ne constitue pas ici un facteur déterminant.
 
+Avant cela on doit faire une petite manipulation de nettoyage des données de la série spatio temporelle car cette dernière comporte des valeurs manquantes.
+
 ```{r}
-covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
-plot(covid_parcs_ts)
+covid_parcs_ts <- ts(covid_vec, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+covid_vec <- as.numeric(covid_parcs_ts)
+covid_vec <- na.omit(covid_vec)
+covid_parcs_ts_clean <- ts(covid_vec, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+plot(covid_parcs_ts_clean)
 ```
 
 Ce graphique fait sur base de la série-temporelle sans modification particulière nous donne déjà beaucoup d'information. En effet, on remarque bien deux pics et donc deux chutes des fréquences dans les parcs.
@@ -227,13 +232,13 @@ bla
 
 **Mobilité dans les parcs de 2020 à 2021** (Valentin V)
 
-Autocorrélation
+Pour caractériser le graphique vu précédemment, on fait un graphique d'autocorrélation pour voir s'il y a la présence de cycel ou une tendance générale.
 
 ```{r}
-acf(covid_parcs_ts)
+acf(covid_parcs_ts_clean)
 ```
 
-bla
+On voit à ce graphique que toutes les barres sont au dessus du seuil de 95% et positives, ont un donc un graphique typique montrant une tendance générale à la hausse.
 
 ### Décomposition de séries temporelles
 
