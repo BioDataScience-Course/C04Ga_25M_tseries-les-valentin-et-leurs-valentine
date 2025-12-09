@@ -169,16 +169,20 @@ plot(covidwe_tsp2,
 
 bla
 
-**Mobilité dans les parcs de 2020 à 2021** (Valentin V)
+**Mobilité dans les parcs entre 2020 et 2021** (Valentin V)
 
-Caractérisation de la mobilité dans les parcs durant les deux vagues de la pandémie de COVID :
+L’objectif de cette analyse est d’évaluer l’impact de la pandémie de COVID-19 sur la fréquentation des parcs. Un objet spatio-temporel a donc été construit de manière à couvrir l’ensemble de la période critique.
+
+Aucune distinction n’est opérée entre les jours de semaine et les week-ends. Cette décision repose sur l’hypothèse que les dynamiques de fréquentation des parcs demeurent relativement homogènes tout au long de la semaine, et que la séparation entre weekend et semaine ne constitue pas ici un facteur déterminant.
 
 ```{r}
 covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
 plot(covid_parcs_ts)
 ```
 
-On voit qu'il y a deux pics, on peut essayer de les analyser.
+Ce graphique fait sur base de la série-temporelle sans modification particulière nous donne déjà beaucoup d'information. En effet, on remarque bien deux pics et donc deux chutes des fréquences dans les parcs.
+
+On peut déjà imaginer que cela est dû aux différents confinements que les Wallons ont connus. On peux pousser cette analyse plus loin pour essayer de confirmer cette hypothèse.
 
 ### Analyse de séries temporelles
 
