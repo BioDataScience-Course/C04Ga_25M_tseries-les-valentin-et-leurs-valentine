@@ -178,11 +178,8 @@ Aucune distinction n’est opérée entre les jours de semaine et les week-ends.
 Avant cela on doit faire une petite manipulation de nettoyage des données de la série spatio temporelle car cette dernière comporte des valeurs manquantes.
 
 ```{r}
-covid_parcs_ts <- ts(covid_vec, start = c(2020, 46), end = c(2021, 365), frequency = 365)
-covid_vec <- as.numeric(covid_parcs_ts)
-covid_vec <- na.omit(covid_vec)
-covid_parcs_ts_clean <- ts(covid_vec, start = c(2020, 46), end = c(2021, 365), frequency = 365)
-plot(covid_parcs_ts_clean)
+covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+plot(covid_parcs_ts)
 ```
 
 Ce graphique fait sur base de la série-temporelle sans modification particulière nous donne déjà beaucoup d'information. En effet, on remarque bien deux pics et donc deux chutes des fréquences dans les parcs.
