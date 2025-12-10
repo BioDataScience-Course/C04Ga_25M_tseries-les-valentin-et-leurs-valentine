@@ -20,7 +20,9 @@ lang: fr
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but. Vous devez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-... Introduction et but...
+Les données utilisées dans ce travail proviennent des "Rapports sur la mobilité de la communauté" publiés par Google durant la pandémie de Covid-19. Elles décrivent l'évolution des déplacements de population en Belgique, plus précisément en Wallonie, vers différents types de lieux tels que les commerces, les lieux de travail, les parcs ou les transports en commun. Les variations de mobilité sont exprimées en pourcentage par rapport à une période de référence antérieure à la pandémie (janvier-février 2020). Ces données sont anonymisées et issues des utilisateurs ayant activé l'historique des positions sur Google Maps, ce qui permet d'analyser les tendances globales tout en respectant la vie privée.
+
+L'objectif de ce travail est d'analyser l'impact de la pandémie de Covid-19 sur les déplacements de personnes en Wallonie, en mettant en évidence les changements de mobilité selon les types de lieux et les périodes.
 
 ## Matériel et méthodes
 
