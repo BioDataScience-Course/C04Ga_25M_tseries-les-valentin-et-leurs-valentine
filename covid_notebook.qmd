@@ -214,7 +214,7 @@ spectrum(covid_j, spans = c(3, 5))
 
 ```
 
-Le périodogramme montre une forte composante de tendance à long terme, mais aucun cycle dominant régulier, ce qui suggère que la mobilité durant la pandémie n’a pas suivi une périodicité stable. Les variations observées semblent plutôt liées à des évènements exceptionnels et irréguliers, comme les différentes mesures COVID-19, plutôt qu’à un schéma cyclique naturel.
+spectrum –\> Le périodogramme montre une forte composante de tendance à long terme, mais aucun cycle dominant régulier, ce qui suggère que la mobilité durant la pandémie n’a pas suivi une périodicité stable. Les variations observées semblent plutôt liées à des évènements exceptionnels et irréguliers, comme les différentes mesures COVID-19, plutôt qu’à un schéma cyclique naturel.
 
 **Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
 
@@ -264,17 +264,15 @@ bla
 
 **Mobilité au travail en semaine de 2020 à 2021** (Jeff)
 
-bla
-
 ```{r}
 job_extract <- extract(covid_je, components = "filtered")
-plot(tec_extract,
+plot(job_extract,
   xlab = "Temps",
   ylab = "Tendance de mobilité pour le travail",
   main = "Evolution des tendances de mobilité pour le travail durant la période Covid")
 ```
 
-bla
+tendance générale très basse au début, à la hausse par la suite ( aucun sens déjà dit plus faut trouver une autre méthode )
 
 **Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
 
@@ -300,4 +298,4 @@ bla
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les éléments les plus pertinents que vous retenez ? -->
 
-...vos conclusions ici...
+faites de belle histoire pour mon cheval
