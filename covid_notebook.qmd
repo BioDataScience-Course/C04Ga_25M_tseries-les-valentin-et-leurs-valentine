@@ -119,27 +119,35 @@ La fonction aggregate() a été utilisée afin de lisser le graphique afin qu'il
 
 **Mobilité au travail en semaine de 2020 à 2021** (Jeff)
 
-bla
+L’objectif de cette analyse est d’examiner la mobilité des habitants de Wallonie durant la pandémie de 2020–2021. Les données utilisées couvrent la période allant du 15 février 2020 au 31 décembre 2021.Nous nous interessons uniquement au jour de semaine.
 
 ```{r}
 covidwj <- covidw %>% 
   filter(!weekdays %in% c("Saturday", "Sunday"))
 covid_j <- ts(covidwj$travail, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
 plot(covid_j)
-covid_je <- tsd(covid_j, method = "average", type = "additive", order = 6, times = 3)
+covid_je <- tsd(covid_j, method = "average", type = "additive", order = 6, times = 10)
 plot(covid_je, col = 1:3)
 
 ```
 
-bla
+L’analyse de la série temporelle permet de mieux comprendre l’évolution de la mobilité en Wallonie durant la pandémie. Le premier graphique montre la série brute, avec de fortes variations quotidiennes et plusieurs chutes marquées, probablement liées aux mesures sanitaires.
 
-bla
+Le graphique du milieu présente la composante saisonnière : on observe un cycle annuel régulier, indiquant que la mobilité suit un schéma saisonnier identifiable.
+
+Enfin, les résidus montrent les variations restantes une fois la tendance et la saisonnalité retirées. La plupart de ces fluctuations sont aléatoires, mais certains pics extrêmes correspondent clairement aux restrictions liées au COVID-19.
+
+En résumé, la mobilité est influencée par une saisonnalité stable et par des événements exceptionnels, principalement les mesures de la pandémie.
+
+De plus la série brute est bruitée et difficile à lire directement.
 
 ```{r}
 as.POSIXct((time(covid_j)[covid_j< -70]-1970)*60*60*24*365.25)
 ```
 
-bla
+Nous avons tenté de comprendre les raisons de la baisse de fréquentation des travailleurs durant la pandémie. Notre première intuition était que les pics à –70 % pouvaient être liés à des jours fériés. Malheureusement, cette hypothèse n’a donné aucun résultat significatif.
+
+Une autre piste possible serait que ces chutes abruptes soient liées à certains événements sanitaires majeurs durant la pandémie de COVID-19, comme l’annonce de nouvelles mesures ou des périodes de restrictions renforcées. Il ne s’agit cependant que d’une hypothèse, qui nécessiterait des données supplémentaires pour être confirmée.
 
 **Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
 
@@ -158,22 +166,20 @@ bla
 
 **Mobilité dans les parcs entre 2020 et 2021** (Valentin V)
 
-L’objectif de cette analyse est d’évaluer l’impact de la pandémie de COVID-19 sur la fréquentation des parcs. Deux objets spatio-temporel ont donc été construits pour comparer les années 2020 et 2021 toutes deux touchées par la pandémie.
+L’objectif de cette analyse est d’évaluer l’impact de la pandémie de COVID-19 sur la fréquentation des parcs. Un objet spatio-temporel a donc été construit de manière à couvrir l’ensemble de la période critique.
 
 Aucune distinction n’est opérée entre les jours de semaine et les week-ends. Cette décision repose sur l’hypothèse que les dynamiques de fréquentation des parcs demeurent relativement homogènes tout au long de la semaine, et que la séparation entre weekend et semaine ne constitue pas ici un facteur déterminant.
 
+Avant cela on doit faire une petite manipulation de nettoyage des données de la série spatio temporelle car cette dernière comporte des valeurs manquantes.
+
 ```{r}
-parcs_ts_2020 <- ts(covid$parcs, start = c(2020, 46), end = c(2020, 365), frequency = 365)
-parcs_tsp_2020 <- aggregate(parcs_ts_2020, 52, FUN = collapse::fmean, ts.eps = 1/52)
-parcs_ts_2021 <- ts(covid$parcs, start = c(2021, 1), end = c(2021, 365), frequency = 365)
-parcs_tsp_2021 <- aggregate(parcs_ts_2021, 52, FUN = collapse::fmean, ts.eps = 1/52)
-plot(parcs_tsp_2020)
-plot(parcs_tsp_2021)
+covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+plot(covid_parcs_ts)
 ```
 
-On peut aisément voir sur les deux graphiques qu'il y a un cycle annuel. En effet, il y a un pic de fréquentation chaque année.
+Ce graphique fait sur base de la série-temporelle sans modification particulière nous donne déjà beaucoup d'information. En effet, on remarque bien deux pics et donc deux chutes des fréquences dans les parcs.
 
-On peut déjà imaginer que cela est dû à l'été qui est la saison où les gens vont le plus dans ces lieux. On voit aussi un décalge des pics entre les deux années, cela est peut-être du au confinement. On peux pousser cette analyse plus loin pour essayer de confirmer cette hypothèse.
+On peut déjà imaginer que cela est dû aux différents confinements que les Wallons ont connus. On peux pousser cette analyse plus loin pour essayer de confirmer cette hypothèse.
 
 ### Analyse de séries temporelles
 
@@ -218,15 +224,13 @@ bla
 
 **Mobilité dans les parcs de 2020 à 2021** (Valentin V)
 
-Ici, on analyse les deux années en même temps et on fait une analyse de tendance local pour essayer de confirmer la présences des deux pics successifs.
+Pour caractériser le graphique vu précédemment, on fait un graphique d'autocorrélation pour voir s'il y a la présence de cycel ou une tendance générale.
 
 ```{r}
-parcs_ts_ <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
-parcs_tsp <- aggregate(parcs_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
-local.trend(parcs_tsp)
+acf(covid_parcs_ts_clean)
 ```
 
-On voit à ce graphique la présence d'un pic claire chaque année en été.
+On voit à ce graphique que toutes les barres sont au dessus du seuil de 95% et positives, ont un donc un graphique typique montrant une tendance générale à la hausse.
 
 ### Décomposition de séries temporelles
 
