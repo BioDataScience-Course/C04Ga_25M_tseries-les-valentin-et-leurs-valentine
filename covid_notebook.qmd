@@ -125,7 +125,11 @@ L’objectif de cette analyse est d’examiner la mobilité des habitants de Wal
 covidwj <- covidw %>% 
   filter(!weekdays %in% c("Saturday", "Sunday"))
 covid_j <- ts(covidwj$travail, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
-plot(covid_j)
+plot(covid_j,
+  xlab = "Temps",
+  ylab = "Tendance de mobilité ",
+  main = "Evolution des tendances de 
+  mobilité pour le travail durant la période Covid (2020-2021)")
 covid_je <- tsd(covid_j, method = "average", type = "additive", order = 6, times = 10)
 plot(covid_je, col = 1:3)
 
@@ -210,7 +214,7 @@ spectrum(covid_j, spans = c(3, 5))
 
 ```
 
-bla
+Le périodogramme montre une forte composante de tendance à long terme, mais aucun cycle dominant régulier, ce qui suggère que la mobilité durant la pandémie n’a pas suivi une périodicité stable. Les variations observées semblent plutôt liées à des évènements exceptionnels et irréguliers, comme les différentes mesures COVID-19, plutôt qu’à un schéma cyclique naturel.
 
 **Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
 
