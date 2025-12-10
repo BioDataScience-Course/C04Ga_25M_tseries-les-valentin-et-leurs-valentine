@@ -143,7 +143,7 @@ bla
 
 **Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
 
-bla
+L’objectif de cette analyse est d’évaluer l’impact de la pandémie de COVID-19 sur la fréquentation des commerces et loisirs d. Un objet spatio-temporel a donc été construit de manière à couvrir l’ensemble de la période critique.
 
 ```{r tsp}
 covid_com_loi_ts <- ts(covid$com_loi, start = c(2020, 46), end = c(2021, 365), frequency = 365)
