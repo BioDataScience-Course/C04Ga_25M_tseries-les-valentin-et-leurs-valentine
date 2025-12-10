@@ -199,12 +199,12 @@ bla
 covid_tec_ts2 <- ts(covid$tec, start = c(2020, 80),  end = c(2021, 365), frequency = 365)
 
 set.seed(2000)
-trend_tec2 <- trend.test(covid_tec2, R = 999)
+trend_tec2 <- trend.test(covid_tec_ts2, R = 999)
 plot(trend_tec2)
 
 ```
 
-Le test de tendance, basé sur la série temporelle étudiant l'effet de la Covid sur les transports, montre une tendance positive significative (ligne verticale en dehors de la distribution simulée) après l'évenement du premier confinement. Cela indique que la mobilité en transport a effectivement augmenté au cours de la période 2020–2021, confirmant la reprise progressive de la mobilité après le choc initial des confinements.
+Le test de tendance, basé sur la série temporelle étudiant l'effet de la Covid sur les transports, montre une tendance positive significative (ligne verticale en dehors de la distribution simulée) après l'événement du premier confinement. Cela indique que la mobilité en transport a effectivement augmenté au cours de la période 2020–2021, confirmant la reprise progressive de la mobilité après le choc initial des confinements.
 
 La séparation des données après le confinement a été faite dans un objet ts et ensuite un trend.test() a été utilisé pour établir la tendance.
 
@@ -257,7 +257,11 @@ bla
 
 ```{r}
 tec_extract <- extract(decomp_tec, components = "filtered")
-plot(tec_extract)
+plot(tec_extract,
+  xlab = "Temps",
+  ylab = "Tendance de mobilité dans les tec",
+  main = "Evolution des tendances de mobilité pour les tec durant la période Covid")
+
 ```
 
 bla
