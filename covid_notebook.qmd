@@ -267,7 +267,11 @@ bla
 bla
 
 ```{r}
-
+job_extract <- extract(covid_je, components = "filtered")
+plot(tec_extract,
+  xlab = "Temps",
+  ylab = "Tendance de mobilité pour le travail",
+  main = "Evolution des tendances de mobilité pour le travail durant la période Covid")
 ```
 
 bla
