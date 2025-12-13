@@ -252,6 +252,15 @@ plot(trendwe_com_loi)
 
 Les tests de tendance appliqués à la mobilité dans les commerces et loisirs en Wallonie entre 2020 et 2021 révèlent une reprise significative. Cette reprise est plus marquée le week-end, traduisant une relance des activités récréatives. En semaine, la tendance est également positive mais plus modérée, en lien avec une reprise économique partielle avec des contraintes persistantes (télétravail...). Ces résultats confirment que les effets de la pandémie sur la mobilité ont été progressivement atténués, avec des dynamiques différentes selon les jours.
 
+```{r acf}
+acf(covidw_tsp)
+acf(covidwe_tsp)
+spectrum(covidw_tsp, spans = c(3, 5))
+spectrum(covidwe_tsp, spans = c(3, 5))
+```
+
+L’analyse des fonctions d’autocorrélation et des spectres de densité confirme que la mobilité dans les commerces et loisirs en Wallonie entre 2020 et 2021 est dominée par une tendance lente, liée aux mesures sanitaires. Les jours de semaine présentent une structure temporelle plus régulière, tandis que les week-ends sont plus sensibles aux événements ponctuels. Aucune saisonnalité forte n’est détectée, mais une inertie temporelle est bien présente, justifiant l’usage de modèles de séries temporelles pour capturer ces dynamiques.
+
 **Mobilité dans les parcs de 2020 à 2021** (Valentin V)
 
 Pour caractériser le graphique vu précédemment, on fait un graphique d'autocorrélation pour voir s'il y a la présence de cycel ou une tendance générale.
