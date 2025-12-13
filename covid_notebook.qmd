@@ -165,13 +165,13 @@ covidw_tsp <- aggregate(covidw_com_loi_ts, 52, FUN = collapse::fmean, ts.eps = 1
 plot(covidw_tsp,
   xlab = "Temps",
   ylab = "Tendance de mobilité pour les commerces et loisirs",
-  main = "Evolution des tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, semaine)")
+  main = "Tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, semaine)")
 covidwe_com_loi_ts <- ts(covidwe$com_loi, start = c(2020, 46), end = c(2021, 365), frequency = 365)
 covidwe_tsp <- aggregate(covidwe_com_loi_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
 plot(covidwe_tsp,
   xlab = "Temps",
   ylab = "Tendance de mobilité pour les commerces et loisirs",
-  main = "Evolution des tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, week-end)")
+  main = "Tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, week-end)")
 ```
 
 Les graphiques montrent une forte baisse de la mobilité dans les commerces et loisirs dès mars 2020, en lien direct avec le premier confinement. Cette diminution est visible aussi bien en semaine que le week-end, mais elle est plus marquée durant les week-ends, périodes habituellement consacrées aux activités de loisirs.
@@ -188,8 +188,6 @@ plot(covidwe_tsd_p, col = 1:3)
 La décomposition des séries temporelles indique que les variations sont principalement dues aux événements exceptionnels liés à la pandémie plutôt qu’à une saisonnalité régulière. Les légères hausses estivales suggèrent néanmoins un effet saisonnier limité, surtout le week-end.
 
 En conclusion, la mobilité dans les commerces et loisirs a été fortement et durablement affectée par la COVID-19, avec des fluctuations plus importantes durant les week-ends, reflet de la suspension puis de la reprise partielle des activités de loisirs.
-
-bla
 
 **Mobilité dans les parcs entre 2020 et 2021** (Valentin V)
 
@@ -244,10 +242,15 @@ spectrum –\> Le périodogramme montre une forte composante de tendance à long
 bla
 
 ```{r}
-
+set.seed(1826)
+trendw_com_loi <- trend.test(covidw_tsp, R = 999)
+plot(trendw_com_loi)
+set.seed(9872)
+trendwe_com_loi <- trend.test(covidwe_tsp, R = 999)
+plot(trendwe_com_loi)
 ```
 
-bla
+Les tests de tendance appliqués à la mobilité dans les commerces et loisirs en Wallonie entre 2020 et 2021 révèlent une reprise significative. Cette reprise est plus marquée le week-end, traduisant une relance des activités récréatives. En semaine, la tendance est également positive mais plus modérée, en lien avec une reprise économique partielle avec des contraintes persistantes (télétravail...). Ces résultats confirment que les effets de la pandémie sur la mobilité ont été progressivement atténués, avec des dynamiques différentes selon les jours.
 
 **Mobilité dans les parcs de 2020 à 2021** (Valentin V)
 
