@@ -121,7 +121,7 @@ La fonction aggregate() a été utilisée afin de lisser le graphique afin qu'il
 
 **Mobilité au travail en semaine de 2020 à 2021** (Jeff)
 
-L’objectif de cette analyse est d’examiner la mobilité des habitants de Wallonie durant la pandémie de 2020–2021. Les données utilisées couvrent la période allant du 15 février 2020 au 31 décembre 2021.Nous nous interessons uniquement au jour de semaine.
+L’objectif de cette analyse est d’examiner la mobilité des habitants de Wallonie durant la pandémie de 2020–2021. Les données utilisées couvrent la période allant du 15 février 2020 au 31 décembre 2021. Nous nous intéressons uniquement au jour de semaine.
 
 ```{r}
 covidwj <- covidw %>% 
@@ -155,18 +155,39 @@ Nous avons tenté de comprendre les raisons de la baisse de fréquentation des t
 
 Une autre piste possible serait que ces chutes abruptes soient liées à certains événements sanitaires majeurs durant la pandémie de COVID-19, comme l’annonce de nouvelles mesures ou des périodes de restrictions renforcées. Il ne s’agit cependant que d’une hypothèse, qui nécessiterait des données supplémentaires pour être confirmée.
 
-**Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
+**Mobilité dans les commerces et loisirs de 2020 à 2021, comparaison semaine/week-end** (Valentin P)
 
-L’objectif de cette analyse est d’évaluer l’impact de la pandémie de COVID-19 sur la fréquentation des commerces et loisirs d. Un objet spatio-temporel a donc été construit de manière à couvrir l’ensemble de la période critique.
+L’objectif de cette analyse est d’évaluer l’impact de la pandémie de COVID-19 sur la fréquentation des commerces et loisirs. Un objet spatio-temporel a donc été construit de manière à couvrir l’ensemble de la période critique.
 
 ```{r tsp}
-covid_com_loi_ts <- ts(covid$com_loi, start = c(2020, 46), end = c(2021, 365), frequency = 365)
-covid_tsp <- aggregate(covid_com_loi_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
-plot(covid_tsp,
+covidw_com_loi_ts <- ts(covidw$com_loi, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+covidw_tsp <- aggregate(covidw_com_loi_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covidw_tsp,
   xlab = "Temps",
   ylab = "Tendance de mobilité pour les commerces et loisirs",
-  main = "Evolution des tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021)")
+  main = "Evolution des tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, semaine)")
+covidwe_com_loi_ts <- ts(covidwe$com_loi, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+covidwe_tsp <- aggregate(covidwe_com_loi_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covidwe_tsp,
+  xlab = "Temps",
+  ylab = "Tendance de mobilité pour les commerces et loisirs",
+  main = "Evolution des tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, week-end)")
 ```
+
+Les graphiques montrent une forte baisse de la mobilité dans les commerces et loisirs dès mars 2020, en lien direct avec le premier confinement. Cette diminution est visible aussi bien en semaine que le week-end, mais elle est plus marquée durant les week-ends, périodes habituellement consacrées aux activités de loisirs.
+
+Une reprise progressive s’observe à partir du printemps–été 2020, particulièrement le week-end, sans toutefois atteindre le niveau de référence pré-pandémique. À l’automne 2020, le second confinement entraîne une nouvelle chute de fréquentation, confirmant la forte dépendance de ce type de mobilité aux mesures sanitaires.
+
+```{r tsd_p}
+covidw_tsd_p <- tsd(covidw_tsp, method = "average", type = "additive", order = 6, times = 10)
+plot(covidw_tsd_p, col = 1:3)
+covidwe_tsd_p <- tsd(covidwe_tsp, method = "average", type = "additive", order = 6, times = 10)
+plot(covidwe_tsd_p, col = 1:3)
+```
+
+La décomposition des séries temporelles indique que les variations sont principalement dues aux événements exceptionnels liés à la pandémie plutôt qu’à une saisonnalité régulière. Les légères hausses estivales suggèrent néanmoins un effet saisonnier limité, surtout le week-end.
+
+En conclusion, la mobilité dans les commerces et loisirs a été fortement et durablement affectée par la COVID-19, avec des fluctuations plus importantes durant les week-ends, reflet de la suspension puis de la reprise partielle des activités de loisirs.
 
 bla
 
