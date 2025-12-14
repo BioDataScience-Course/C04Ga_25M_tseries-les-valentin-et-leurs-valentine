@@ -178,17 +178,6 @@ Les graphiques montrent une forte baisse de la mobilité dans les commerces et l
 
 Une reprise progressive s’observe à partir du printemps–été 2020, particulièrement le week-end, sans toutefois atteindre le niveau de référence pré-pandémique. À l’automne 2020, le second confinement entraîne une nouvelle chute de fréquentation, confirmant la forte dépendance de ce type de mobilité aux mesures sanitaires.
 
-```{r tsd_p}
-covidw_tsd_p <- tsd(covidw_tsp, method = "average", type = "additive", order = 6, times = 10)
-plot(covidw_tsd_p, col = 1:3)
-covidwe_tsd_p <- tsd(covidwe_tsp, method = "average", type = "additive", order = 6, times = 10)
-plot(covidwe_tsd_p, col = 1:3)
-```
-
-La décomposition des séries temporelles indique que les variations sont principalement dues aux événements exceptionnels liés à la pandémie plutôt qu’à une saisonnalité régulière. Les légères hausses estivales suggèrent néanmoins un effet saisonnier limité, surtout le week-end.
-
-En conclusion, la mobilité dans les commerces et loisirs a été fortement et durablement affectée par la COVID-19, avec des fluctuations plus importantes durant les week-ends, reflet de la suspension puis de la reprise partielle des activités de loisirs.
-
 **Mobilité dans les parcs entre 2020 et 2021** (Valentin V)
 
 L’objectif de cette analyse est d’évaluer l’impact de la pandémie de COVID-19 sur la fréquentation des parcs. Un objet spatio-temporel a donc été construit de manière à couvrir l’ensemble de la période critique.
@@ -313,11 +302,31 @@ tendance générale très basse au début, à la hausse par la suite ( aucun sen
 
 bla
 
-```{r}
-
+```{r decomp_com_loi}
+decompw_com_loi <- tsd(covidw_tsp, method = "average", type = "additive", order = 6, times = 10)
+plot(covidw_tsd_p, col = 1:3)
+decompwe_com_loi <- tsd(covidwe_tsp, method = "average", type = "additive", order = 6, times = 10)
+plot(covidwe_tsd_p, col = 1:3)
 ```
 
-bla
+La décomposition des séries temporelles indique que les variations sont principalement dues aux événements exceptionnels liés à la pandémie plutôt qu’à une saisonnalité régulière. Les légères hausses estivales suggèrent néanmoins un effet saisonnier limité, surtout le week-end.
+
+En conclusion, la mobilité dans les commerces et loisirs a été fortement et durablement affectée par la COVID-19, avec des fluctuations plus importantes durant les week-ends, reflet de la suspension puis de la reprise partielle des activités de loisirs.
+
+```{r extract_com_loi}
+extractw_com_loi <- extract(decompw_com_loi, components = "filtered")
+plot(extractw_com_loi,
+  xlab = "Temps",
+  ylab = "Tendance de mobilité pour les commerces et loisirs",
+  main = "Tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, semaine)")
+extractwe_com_loi <- extract(decompwe_com_loi, components = "filtered")
+plot(extractwe_com_loi,
+  xlab = "Temps",
+  ylab = "Tendance de mobilité pour les commerces et loisirs",
+  main = "Tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, week-end)")
+```
+
+Les tendances filtrées extraites des séries hebdomadaires montrent que la mobilité dans les commerces et loisirs a été profondément affectée par la pandémie, avec deux phases de chute majeures en 2020. La reprise observée en 2021 est plus marquée le week-end, traduisant une relance des activités récréatives. En semaine, la reprise est plus modérée, en lien avec une reprise économique partielle. Ces tendances confirment que les effets de la pandémie sur la mobilité ont été progressivement atténués, mais avec des dynamiques distinctes selon les jours.
 
 **Mobilité dans les parcs de 2020 à 2021** (Valentin V)
 
