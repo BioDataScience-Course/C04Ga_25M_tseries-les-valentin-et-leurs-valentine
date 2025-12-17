@@ -24,7 +24,7 @@ En Europe, la propagation rapide du virus a conduit à des restrictions majeures
 
 En Belgique, le premier cas a été confirmé le 4 février 2020 à Bruxelles [@wikipediaBelgique2020]. Le pays a connu plusieurs vagues sévères, notamment en mars et novembre 2020, entraînant des confinements stricts et une forte pression sur les hôpitaux. Selon Sciensano, plus de 4,6 millions de cas et près de 33 500 décès ont été enregistrés début 2023 [@wikipediaBelgique2020].
 
-La campagne de vaccination, lancée fin 2020, a permis de réduire la gravité des infections et de stabiliser la situation sanitaire en 2022. La phase fédérale de gestion de crise a pris fin en mars 2022, marquant le passage à une surveillance épidémiologique régulière \[@centredecrise2022\].
+La campagne de vaccination, lancée fin 2020, a permis de réduire la gravité des infections et de stabiliser la situation sanitaire en 2022. La phase fédérale de gestion de crise a pris fin en mars 2022, marquant le passage à une surveillance épidémiologique régulière [@centredecrise2022].
 
 ## But
 
