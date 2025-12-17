@@ -58,7 +58,7 @@ plot(tec_extract,
   main = "Evolution des tendances de mobilité pour les tec durant la période Covid")
 ```
 
-L'analyse de la tendance montre une forte baisse de la mobilité dans les transports au début de la période, en lien avec le premier confinement. Une reprise progressive s’observe ensuite au cours de l’année 2020, avant une nouvelle diminution à la fin de l’année lors du renforcement des restrictions. En 2021, la tendance repart à la hausse, indiquant une reprise plus durable de la mobilité, même si le niveau d’avant la pandémie n’est pas totalement retrouvé.
+L'analyse de la tendance montre une forte baisse de la mobilité dans les transports en commun au début de la période, en lien avec le premier confinement. Une reprise progressive s’observe ensuite au cours de l’année 2020, avant une nouvelle diminution à la fin de l’année lors du renforcement des restrictions. En 2021, la tendance repart à la hausse, indiquant une reprise plus durable de la mobilité, même si le niveau d’avant la pandémie n’est pas totalement retrouvé.
 
 ## Discussion et Conclusion
 
