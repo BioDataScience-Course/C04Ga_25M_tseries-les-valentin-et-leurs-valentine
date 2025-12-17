@@ -100,7 +100,6 @@ plot(covidwe_ts)
 # Agrégation par moyenne des valeurs par semaine
 covidwe_ts2 <- aggregate(covidwe_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
 plot(covidwe_ts2)
-
 ```
 
 **Mobilité dans les TEC de 2020 à 2021** (Alex)
