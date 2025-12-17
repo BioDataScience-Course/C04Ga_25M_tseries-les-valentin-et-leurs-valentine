@@ -7,6 +7,7 @@ format:
     toc: true
 editor: visual
 lang: fr
+bibliography: references.bib
 ---
 
 <!--# Ce travail doit faire entre 15 et 20 pages.-->
@@ -17,7 +18,13 @@ lang: fr
 
 <!--% Rédigez l'introduction de ce rapport.-->
 
-PICART
+La pandémie de COVID‑19, causée par le SARS‑CoV‑2 apparu fin 2019 en Chine, a été déclarée pandémie mondiale par l’OMS le 11 mars 2020 [@universalis2020]. Elle a entraîné plusieurs vagues successives, marquées par l’émergence de variants et des mesures de confinement à l’échelle planétaire [@wikipediaChronologie2020].
+
+En Europe, la propagation rapide du virus a conduit à des restrictions majeures dès le printemps 2020, avec fermetures de frontières, confinement et campagnes de vaccination massives [@touteleurope2020].
+
+En Belgique, le premier cas a été confirmé le 4 février 2020 à Bruxelles [@wikipediaBelgique2020]. Le pays a connu plusieurs vagues sévères, notamment en mars et novembre 2020, entraînant des confinements stricts et une forte pression sur les hôpitaux. Selon Sciensano, plus de 4,6 millions de cas et près de 33 500 décès ont été enregistrés début 2023 [@wikipediaBelgique2020].
+
+La campagne de vaccination, lancée fin 2020, a permis de réduire la gravité des infections et de stabiliser la situation sanitaire en 2022. La phase fédérale de gestion de crise a pris fin en mars 2022, marquant le passage à une surveillance épidémiologique régulière \[@centredecrise2022\].
 
 ## But
 
