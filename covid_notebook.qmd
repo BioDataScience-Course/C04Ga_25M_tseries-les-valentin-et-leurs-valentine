@@ -184,16 +184,23 @@ L’objectif de cette analyse est d’évaluer l’impact de la pandémie de COV
 
 Aucune distinction n’est opérée entre les jours de semaine et les week-ends. Cette décision repose sur l’hypothèse que les dynamiques de fréquentation des parcs demeurent relativement homogènes tout au long de la semaine, et que la séparation entre weekend et semaine ne constitue pas ici un facteur déterminant.
 
-Avant cela on doit faire une petite manipulation de nettoyage des données de la série spatio temporelle car cette dernière comporte des valeurs manquantes.
+On agrège les données par semaine pour ne pas avoir les fluctuations journalières (pouvant être dû aux variations météorologiques qui sont peu intéressantes ici.
 
 ```{r}
 covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
-plot(covid_parcs_ts)
+covid_parcs_tsp <- aggregate(covid_parcs_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covid_parcs_tsp)
 ```
 
-Ce graphique fait sur base de la série-temporelle sans modification particulière nous donne déjà beaucoup d'information. En effet, on remarque bien deux pics et donc deux chutes des fréquences dans les parcs.
+Ce graphique met en évidence trois grandes phases distinctes :
 
-On peut déjà imaginer que cela est dû aux différents confinements que les Wallons ont connus. On peux pousser cette analyse plus loin pour essayer de confirmer cette hypothèse.
+1\) Une forte chute début de l'année 2020 suivit d'un rebond massif vers la mi-2020.
+
+2\) A partir de l'automne 2020, on voit une chute rapide des fréquentations.
+
+3\) En 2021, on voit une tendance globale à la hausse puis une décroissance progressive en fin d'année.
+
+On peux pousser cette analyse pour essayer d'expliquer ces variation et donc peaufiner cette interprétation.
 
 ### Analyse de séries temporelles
 
@@ -252,13 +259,13 @@ L’analyse des fonctions d’autocorrélation et des spectres de densité confi
 
 **Mobilité dans les parcs de 2020 à 2021** (Valentin V)
 
-Pour caractériser le graphique vu précédemment, on fait un graphique d'autocorrélation pour voir s'il y a la présence de cycel ou une tendance générale.
+Pour caractériser le graphique vu précédemment, on réalise une analyse de la tendance locale pour essayer de confirmer les interprétations précédentes.
 
 ```{r}
-acf(covid_parcs_ts_clean)
+covid_parcs_local <- local.trend(covid_parcs_tsp)
 ```
 
-On voit à ce graphique que toutes les barres sont au dessus du seuil de 95% et positives, ont un donc un graphique typique montrant une tendance générale à la hausse.
+L’analyse de la tendance locale met en évidence une succession de régimes temporels dans la fréquentation des parcs en Wallonie entre 2020 et 2021. Après une phase initiale de baisse marquée correspondant au premier confinement, un retournement brutal de tendance est observé au printemps 2020, traduisant un recours accru aux espaces verts lors du déconfinement. Cette dynamique est suivie d’une nouvelle phase de repli à l’automne 2020, puis d’une reprise plus progressive et durable en 2021. Ces résultats confirment le caractère non stationnaire de la série et soulignent l’adaptation progressive des comportements de mobilité au contexte sanitaire.
 
 ### Décomposition de séries temporelles
 
@@ -330,16 +337,17 @@ Les tendances filtrées extraites des séries hebdomadaires montrent que la mobi
 
 **Mobilité dans les parcs de 2020 à 2021** (Valentin V)
 
-Autocorrélation
+Pour poursuivre cette analyse, une décomposition par LOESS est réalisé.
 
 ```{r}
-
+decomp_parcs <- tsd(covid_parcs_tsp, method = "average", type = "additive", order = 6, times = 3)
+plot(decomp_parcs, col = 1:3)
 ```
 
-bla
+analyse de cette décomposition
 
 ## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les éléments les plus pertinents que vous retenez ? -->
 
-faites de belle histoire pour mon cheval
+Il a a des tendances à cause de ce virus que tout le monde nomme COVID19

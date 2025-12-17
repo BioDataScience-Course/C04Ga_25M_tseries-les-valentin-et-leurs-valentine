@@ -23,7 +23,7 @@ PICART
 
 <!--% Rédigez le but de ce rapport.-->
 
-VALOU
+L’objectif de cette étude est d’analyser l’évolution de la mobilité de la population en Wallonie durant la pandémie de COVID-19 entre 2020 et 2022, à partir des données de mobilité communautaire de Google, afin de mettre en évidence l’impact des différentes mesures sanitaires sur les comportements de déplacement selon les principaux types de lieux.
 
 ## Matériel et méthodes
 
