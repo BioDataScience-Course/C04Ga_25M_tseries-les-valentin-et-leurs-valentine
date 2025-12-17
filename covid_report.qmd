@@ -48,6 +48,18 @@ L'analyse est réalisée avec la SciViews Box 2025 dans Saturn Cloud (Linux Ubun
 
 <!--% Présentez les analyses les plus pertinents que vous avez sélectionnés. Structurez la section en partie avec des titres explicites de niveau trois.-->
 
+### Mobilité dans les transports en commun (TEC) 2020–2021
+
+```{r result tec}
+tec_extract <- extract(decomp_tec, components = "filtered")
+plot(tec_extract,
+  xlab = "Temps",
+  ylab = "Tendance de mobilité dans les tec",
+  main = "Evolution des tendances de mobilité pour les tec durant la période Covid")
+```
+
+L'analyse de la tendance montre une forte baisse de la mobilité dans les transports au début de la période, en lien avec le premier confinement. Une reprise progressive s’observe ensuite au cours de l’année 2020, avant une nouvelle diminution à la fin de l’année lors du renforcement des restrictions. En 2021, la tendance repart à la hausse, indiquant une reprise plus durable de la mobilité, même si le niveau d’avant la pandémie n’est pas totalement retrouvé.
+
 ## Discussion et Conclusion
 
 <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
