@@ -257,6 +257,11 @@ spectrum(covidwe_tsp, spans = c(3, 5))
 
 L’analyse des fonctions d’autocorrélation et des spectres de densité confirme que la mobilité dans les commerces et loisirs en Wallonie entre 2020 et 2021 est dominée par une tendance lente, liée aux mesures sanitaires. Les jours de semaine présentent une structure temporelle plus régulière, tandis que les week-ends sont plus sensibles aux événements ponctuels. Aucune saisonnalité forte n’est détectée, mais une inertie temporelle est bien présente, justifiant l’usage de modèles de séries temporelles pour capturer ces dynamiques.
 
+```{r local cl}
+covidw_tsp_local <- local.trend(covidw_tsp)
+covidwe_tsp_local <- local.trend(covidwe_tsp)
+```
+
 **Mobilité dans les parcs de 2020 à 2021** (Valentin V)
 
 Pour caractériser le graphique vu précédemment, on réalise une analyse de la tendance locale pour essayer de confirmer les interprétations précédentes.
