@@ -131,18 +131,11 @@ plot(covid_j,
   ylab = "Tendance de mobilité ",
   main = "Evolution des tendances de 
   mobilité pour le travail durant la période Covid (2020-2021)")
-covid_je <- tsd(covid_j, method = "average", type = "additive", order = 6, times = 10)
-plot(covid_je, col = 1:3)
+
 
 ```
 
 L’analyse de la série temporelle permet de mieux comprendre l’évolution de la mobilité en Wallonie durant la pandémie. Le premier graphique montre la série brute, avec de fortes variations quotidiennes et plusieurs chutes marquées, probablement liées aux mesures sanitaires.
-
-Le graphique du milieu présente la composante saisonnière : on observe un cycle annuel régulier, indiquant que la mobilité suit un schéma saisonnier identifiable.
-
-Enfin, les résidus montrent les variations restantes une fois la tendance et la saisonnalité retirées. La plupart de ces fluctuations sont aléatoires, mais certains pics extrêmes correspondent clairement aux restrictions liées au COVID-19.
-
-En résumé, la mobilité est influencée par une saisonnalité stable et par des événements exceptionnels, principalement les mesures de la pandémie.
 
 De plus la série brute est bruitée et difficile à lire directement.
 
@@ -225,13 +218,19 @@ bla
 ```{r}
 covid_work <- ts(covidwj$travail, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
 covid_work <- aggregate(covid_work, 52, FUN = collapse::fmean, ts.eps = 1/52)
+
 set.seed(2000)
 trend_work <- trend.test(covid_work, R = 999)
 plot(trend_work)
+
 local_work <- local.trend(covid_work)
 plot(local_work)
 
 ```
+
+quantile-quantile
+
+Sur le graphique de la tendance locale, on observe une baisse rapide de la tendance, due au premier confinement. Les déplacements des personnes vers leur lieu de travail étant limités, cette tendance présente quelques pics, mais aucune hausse n’est observée durant les différentes phases du confinement. Aucun phénomène cyclique ou saisonnier n’est apparent. On note ensuite une augmentation de la tendance en fin d’année 2021, suite au déconfinement progressif et à la reprise des différents secteurs de la société après la crise sanitaire.
 
 **Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
 
@@ -307,14 +306,24 @@ La tendance extraite montre une forte baisse de la mobilité dans les transports
 **Mobilité au travail en semaine de 2020 à 2021** (Jeff)
 
 ```{r}
+covid_je <- tsd(covid_j, method = "average", type = "additive", order = 10, times = 10)
+plot(covid_je, col = 1:3)
+
+```
+
+Le graphique du milieu présente la composante saisonnière : on observe un cycle annuel régulier, indiquant que la mobilité suit un schéma saisonnier identifiable.
+
+Enfin, les résidus montrent les variations restantes une fois la tendance et la saisonnalité retirées. La plupart de ces fluctuations sont aléatoires, mais certains pics extrêmes correspondent clairement aux restrictions liées au COVID-19.
+
+En résumé, la mobilité est influencée par une saisonnalité stable et par des événements exceptionnels, principalement les mesures de la pandémie
+
+```{r}
 job_extract <- extract(covid_je, components = "filtered")
 plot(job_extract,
   xlab = "Temps",
   ylab = "Tendance de mobilité pour le travail",
   main = "Evolution des tendances de mobilité pour le travail durant la période Covid")
 ```
-
-tendance générale très basse au début, à la hausse par la suite ( aucun sens déjà dit plus faut trouver une autre méthode )
 
 **Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
 
