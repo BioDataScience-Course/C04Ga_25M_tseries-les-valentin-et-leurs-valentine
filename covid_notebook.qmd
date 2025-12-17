@@ -224,12 +224,15 @@ Le test de tendance, basé sur la série temporelle étudiant l'effet de la Covi
 bla
 
 ```{r}
-acf(covid_j)
-spectrum(covid_j, spans = c(3, 5))
+covid_work <- ts(covidwj$travail, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
+covid_work <- aggregate(covid_work, 52, FUN = collapse::fmean, ts.eps = 1/52)
+set.seed(2000)
+trend_work <- trend.test(covid_work, R = 999)
+plot(trend_work)
+local_work <- local.trend(covid_work)
+plot(local_work)
 
 ```
-
-spectrum –\> Le périodogramme montre une forte composante de tendance à long terme, mais aucun cycle dominant régulier, ce qui suggère que la mobilité durant la pandémie n’a pas suivi une périodicité stable. Les variations observées semblent plutôt liées à des évènements exceptionnels et irréguliers, comme les différentes mesures COVID-19, plutôt qu’à un schéma cyclique naturel.
 
 **Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
 
