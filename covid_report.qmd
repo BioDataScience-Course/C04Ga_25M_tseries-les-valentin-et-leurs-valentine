@@ -116,6 +116,28 @@ plot(tec_extract,
 
 L'analyse de la tendance montre une forte baisse de la mobilité dans les transports en commun au début de la période, en lien avec le premier confinement. Une reprise progressive s’observe ensuite au cours de l’année 2020, avant une nouvelle diminution à la fin de l’année lors du renforcement des restrictions. En 2021, la tendance repart à la hausse, indiquant une reprise plus durable de la mobilité, même si le niveau d’avant la pandémie n’est pas totalement retrouvé.
 
+### Mobilité dans les parcs en 2020 et 2021
+
+Création de l'objet ts pour une première analyse
+
+```{r parcs_ts}
+covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+covid_parcs_tsp <- aggregate(covid_parcs_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covid_parcs_tsp)
+```
+
+on peut voir que ....
+
+pour pousuivre cette analyse on fait ...
+
+```{r parcs local}
+covid_parcs_local <- local.trend(covid_parcs_tsp)
+```
+
+En conclusion
+
+### Mobilité dans 
+
 ## Discussion et Conclusion
 
 <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
