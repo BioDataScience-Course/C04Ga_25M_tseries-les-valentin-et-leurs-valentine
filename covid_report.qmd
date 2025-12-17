@@ -30,7 +30,7 @@ La campagne de vaccination, lancée fin 2020, a permis de réduire la gravité d
 
 <!--% Rédigez le but de ce rapport.-->
 
-VALOU
+L’objectif de cette étude est d’analyser l’évolution de la mobilité de la population en Wallonie durant la pandémie de COVID-19 entre 2020 et 2022, à partir des données de mobilité communautaire de Google, afin de mettre en évidence l’impact des différentes mesures sanitaires sur les comportements de déplacement selon les principaux types de lieux.
 
 ## Matériel et méthodes
 
@@ -48,6 +48,62 @@ L'analyse est réalisée avec la SciViews Box 2025 dans Saturn Cloud (Linux Ubun
 
 <!--% Présentez les analyses les plus pertinents que vous avez sélectionnés. Structurez la section en partie avec des titres explicites de niveau trois.-->
 
+```{r setup}
+# Nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
+if (!"tools:tests" %in% search())
+  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
+# Configuration de l'environnement
+SciViews::R("ts", lang = "fr")
+```
+
+```{r Import}
+# Importation
+covid <- read("data/mobility_wallonia.rds")
+```
+
+```{r Cleaning}
+#Nettoyage du tableau
+covid <- covid %>%
+  rename(com_loi = retail_and_recreation_percent_change_from_baseline,
+    alim_pharma = grocery_and_pharmacy_percent_change_from_baseline,
+    parcs = parks_percent_change_from_baseline,
+    tec = transit_stations_percent_change_from_baseline,
+    travail = workplaces_percent_change_from_baseline,
+    residence = residential_percent_change_from_baseline)
+```
+
+```{r Week}
+# Copie de la série initiale sous une autre nom
+covidw <- covid
+# Calcul des jours de la semaine
+covidw$weekdays <- weekdays(as.POSIXct(covidw$date))
+# Les données du week-end sont remplacées par des valeurs manquantes
+covidw[covidw$weekdays == "Saturday" | covidw$weekdays == "Sunday" , 2:7] <- NA 
+# La série temporelle est créée (début le 15 février 2020 = 46e jour de l'année 2020)
+covidw_ts <- ts(covidw$parcs, start = c(2020, 46), frequency = 365)
+plot(covidw_ts)
+# Aggrégation par moyenne des valeurs par semaine
+covidw_ts2 <- aggregate(covidw_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covidw_ts2)
+
+# Copie de la série initiale sous un autre nom
+covidwe <- covid
+
+# Calcul des jours de la semaine
+covidwe$weekdays <- weekdays(as.POSIXct(covidwe$date))
+
+# Les données des jours de semaine sont remplacées par des valeurs manquantes
+covidwe[!(covidwe$weekdays %in% c("Saturday", "Sunday")), 2:7] <- NA
+
+# La série temporelle est créée (début le 15 février 2020 = 46e jour de l'année 2020)
+covidwe_ts <- ts(covidwe$parcs, start = c(2020, 46), frequency = 365)
+plot(covidwe_ts)
+
+# Agrégation par moyenne des valeurs par semaine
+covidwe_ts2 <- aggregate(covidwe_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covidwe_ts2)
+```
+
 ### Mobilité dans les transports en commun (TEC) 2020–2021
 
 ```{r result tec}
@@ -59,6 +115,28 @@ plot(tec_extract,
 ```
 
 L'analyse de la tendance montre une forte baisse de la mobilité dans les transports en commun au début de la période, en lien avec le premier confinement. Une reprise progressive s’observe ensuite au cours de l’année 2020, avant une nouvelle diminution à la fin de l’année lors du renforcement des restrictions. En 2021, la tendance repart à la hausse, indiquant une reprise plus durable de la mobilité, même si le niveau d’avant la pandémie n’est pas totalement retrouvé.
+
+### Mobilité dans les parcs en 2020 et 2021
+
+Création de l'objet ts pour une première analyse
+
+```{r parcs_ts}
+covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
+covid_parcs_tsp <- aggregate(covid_parcs_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covid_parcs_tsp)
+```
+
+on peut voir que ....
+
+pour pousuivre cette analyse on fait ...
+
+```{r parcs local}
+covid_parcs_local <- local.trend(covid_parcs_tsp)
+```
+
+En conclusion
+
+### Mobilité dans 
 
 ## Discussion et Conclusion
 
