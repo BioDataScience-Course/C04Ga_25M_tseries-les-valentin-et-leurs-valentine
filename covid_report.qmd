@@ -81,27 +81,18 @@ covidw$weekdays <- weekdays(as.POSIXct(covidw$date))
 covidw[covidw$weekdays == "Saturday" | covidw$weekdays == "Sunday" , 2:7] <- NA 
 # La série temporelle est créée (début le 15 février 2020 = 46e jour de l'année 2020)
 covidw_ts <- ts(covidw$parcs, start = c(2020, 46), frequency = 365)
-plot(covidw_ts)
 # Aggrégation par moyenne des valeurs par semaine
 covidw_ts2 <- aggregate(covidw_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
-plot(covidw_ts2)
-
 # Copie de la série initiale sous un autre nom
 covidwe <- covid
-
 # Calcul des jours de la semaine
 covidwe$weekdays <- weekdays(as.POSIXct(covidwe$date))
-
 # Les données des jours de semaine sont remplacées par des valeurs manquantes
 covidwe[!(covidwe$weekdays %in% c("Saturday", "Sunday")), 2:7] <- NA
-
 # La série temporelle est créée (début le 15 février 2020 = 46e jour de l'année 2020)
 covidwe_ts <- ts(covidwe$parcs, start = c(2020, 46), frequency = 365)
-plot(covidwe_ts)
-
 # Agrégation par moyenne des valeurs par semaine
 covidwe_ts2 <- aggregate(covidwe_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
-plot(covidwe_ts2)
 ```
 
 ### Mobilité dans les transports en commun en 2020–2021
@@ -135,15 +126,26 @@ L'analyse de la tendance montre une forte baisse de la mobilité dans les transp
 
 ### Mobilité dans les parcs en 2020 et 2021
 
-Création de l'objet ts pour une première analyse
+L’objectif, ici, est d’évaluer l’impact de la pandémie de COVID-19 sur la fréquentation des parcs et des espaces verts en Wallonie. Ces lieux, considérés comme des espaces de loisirs et de sociabilité à faible risque sanitaire, ont joué un rôle particulier dans les pratiques de mobilité durant les périodes de restrictions. Afin d’analyser l’évolution de ces comportements, un objet spatio-temporel a été construit de manière à couvrir l’ensemble de la période critique, s’étendant du 15 février 2020 à la fin de l’année 2021, avec une fréquence journalière.
+
+Aucune distinction n’est opérée entre les jours de semaine et les week-ends. Ce choix repose sur l’hypothèse que, dans un contexte marqué par le télétravail massif, les restrictions de déplacement et la fermeture de nombreux lieux de loisirs, les rythmes hebdomadaires habituels ont été fortement perturbés. Dès lors, la différenciation entre semaine et week-end ne constitue pas un facteur déterminant pour l’analyse de la fréquentation des parcs sur la période étudiée.
+
+Afin de mettre en évidence les tendances de fond et de limiter l’influence des fluctuations journalières, notamment liées aux conditions météorologiques, les données sont ensuite agrégées à une fréquence hebdomadaire.
 
 ```{r parcs_ts}
 covid_parcs_ts <- ts(covid$parcs, start = c(2020, 46), end = c(2021, 365), frequency = 365)
 covid_parcs_tsp <- aggregate(covid_parcs_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
-plot(covid_parcs_tsp)
+plot(covid_parcs_tsp,
+  xlab = "Temps",
+  ylab = "Tendance de mobilité dans les parcs",
+  main = "Evolution des tendances de mobilité pour les parcs")
 ```
 
-on peut voir que ....
+Ce graphique met en évidence plusieurs phases distinctes. Tout d'abors, on voit très clairement une forte chute suivie d'un rebond massif.
+
+2\) A partir de l'automne 2020, on voit une chute rapide des fréquentations.
+
+3\) En 2021, on voit une tendance globale à la hausse puis une décroissance progressive en fin d'année.
 
 pour pousuivre cette analyse on fait ...
 
