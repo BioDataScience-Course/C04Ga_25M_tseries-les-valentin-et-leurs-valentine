@@ -104,9 +104,26 @@ covidwe_ts2 <- aggregate(covidwe_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
 plot(covidwe_ts2)
 ```
 
-### Mobilité dans les transports en commun (TEC) 2020–2021
+### Mobilité dans les transports en commun en 2020–2021
 
-```{r result tec}
+Une décomposition de la série temporelle permet de distinguer la tendance de fond, les variations saisonnières éventuelles et le bruit résiduel.
+
+Pour cela, une décomposition additive de la série est réalisée à l’aide de la fonction tsd(), ce qui facilite l’interprétation des différentes composantes de la mobilité dans les transports en commun.
+
+```{r decomptec}
+decomp_tec <- tsd(covid_tec, method = "average", type = "additive", order = 6, times = 3)
+plot(decomp_tec, col = 1:3)
+```
+
+La première partie correspond à la série observée. On y retrouve une forte chute au début de la période, liée au premier confinement, suivie de fluctuations importantes au cours du temps. Ces variations reflètent les différentes phases de restrictions et d’assouplissements mises en place durant la pandémie.
+
+La composante filtrée (tendance) met en évidence l’évolution générale de la mobilité. Après une baisse marquée en début de période, la tendance augmente progressivement, ce qui confirme une reprise lente mais réelle de l’utilisation des transports en commun après le premier confinement. Cette tendance sera extraite par la suite pour l'analyser plus finement.
+
+Enfin, les résidus représentent les variations de court terme qui ne sont pas expliquées par la tendance. Ils oscillent autour de zéro et traduisent des perturbations temporaires.
+
+Afin de faciliter l’analyse, il est donc pertinent d’extraire la composante lissée de la série. Cette étape permet de se concentrer uniquement sur la dynamique globale des transports en commun, en éliminant les variations ponctuelles et le bruit résiduel.
+
+```{r extract tec}
 tec_extract <- extract(decomp_tec, components = "filtered")
 plot(tec_extract,
   xlab = "Temps",
@@ -136,7 +153,7 @@ covid_parcs_local <- local.trend(covid_parcs_tsp)
 
 En conclusion
 
-### Mobilité dans 
+### Mobilité dans
 
 ## Discussion et Conclusion
 
