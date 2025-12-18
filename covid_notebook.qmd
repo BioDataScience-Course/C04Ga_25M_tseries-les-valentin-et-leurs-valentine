@@ -8,6 +8,7 @@ format:
     toc: true
 editor: visual
 lang: fr
+bibliography: references.bib
 ---
 
 <!--# Ceci est un commentaire. -->
@@ -28,7 +29,7 @@ L'objectif de ce travail est d'analyser l'impact de la pandémie de Covid-19 sur
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets déjà réalisés. -->
 
-Nous avons utilisé les *Community Mobility Reports* de Google \[@googleMobility2022\], basés sur des données anonymisées de Google Maps, afin d’analyser les variations de mobilité liées aux mesures COVID-19. Les données mobilisent différentes catégories de lieux (travail, commerces, loisirs, transports en commun, résidentiel).
+Nous avons utilisé les *Community Mobility Reports* de Google [@googleMobility2022], basés sur des données anonymisées de Google Maps, afin d’analyser les variations de mobilité liées aux mesures COVID-19. Les données mobilisent différentes catégories de lieux (travail, commerces, loisirs, transports en commun, résidentiel).
 
 Les rapports n’étant plus mis à jour depuis octobre 2022, nous avons exploité les données historiques pour la Wallonie sur les années 2020, 2021 et 2022, avec un focus particulier sur 2020 et 2021. Une application interactive [@dimiter2022] permet de visualiser de manière dynamique les données.
 
