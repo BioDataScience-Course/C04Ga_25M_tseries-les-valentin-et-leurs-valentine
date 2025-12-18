@@ -126,7 +126,8 @@ L’objectif de cette analyse est d’examiner la mobilité des habitants de Wal
 covidwj <- covidw %>% 
   filter(!weekdays %in% c("Saturday", "Sunday"))
 covid_j <- ts(covidwj$travail, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
-plot(covid_j,
+covid_work <- aggregate(covid_j, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covid_work,
   xlab = "Temps",
   ylab = "Tendance de mobilité ",
   main = "Evolution des tendances de 
@@ -135,9 +136,13 @@ plot(covid_j,
 
 ```
 
-L’analyse de la série temporelle permet de mieux comprendre l’évolution de la mobilité en Wallonie durant la pandémie. Le premier graphique montre la série brute, avec de fortes variations quotidiennes et plusieurs chutes marquées, probablement liées aux mesures sanitaires.
+Le graphique illustre les déplacements pour le travail des Wallons entre le début de l’année 2020 et la fin de 2021, période fortement marquée par la pandémie de Covid-19. L’axe horizontal représente le temps, tandis que l’axe vertical indique la tendance de mobilité, exprimée en pourcentage par rapport à une situation de référence antérieure à la crise sanitaire.
 
-De plus la série brute est bruitée et difficile à lire directement.
+Dès les premiers mois de 2020, on observe une chute spectaculaire de la mobilité professionnelle, atteignant près de -70 %. Cette baisse brutale correspond à l’instauration des premiers confinements et à la généralisation du télétravail, imposés pour freiner la propagation du virus.
+
+Au fil des mois, la courbe montre une alternance de hausses et de baisses. Les périodes de relâchement des mesures sanitaires entraînent une légère reprise des déplacements, traduisant un retour partiel au bureau ou une relance des activités économiques. À l’inverse, chaque nouvelle vague épidémique provoque une rechute de la mobilité, signe du retour aux restrictions et à une intensification du télétravail.
+
+Même à l’approche de 2022, la tendance reste nettement en dessous du niveau normal, oscillant autour de -30 à -40 %. Cela témoigne d’un changement durable dans les habitudes de travail, avec une adoption plus large du télétravail et une réorganisation des modes de déplacement.
 
 ```{r}
 as.POSIXct((time(covid_j)[covid_j< -70]-1970)*60*60*24*365.25)
@@ -228,9 +233,13 @@ plot(local_work)
 
 ```
 
-quantile-quantile
+Pour mieux comprendre l’évolution des déplacements liés au travail durant la crise sanitaire, deux graphiques statistiques viennent compléter l’analyse précédente. Ils permettent d’approfondir la lecture des données en vérifiant leur distribution et en repérant d’éventuels changements dans les comportements.
 
-Sur le graphique de la tendance locale, on observe une baisse rapide de la tendance, due au premier confinement. Les déplacements des personnes vers leur lieu de travail étant limités, cette tendance présente quelques pics, mais aucune hausse n’est observée durant les différentes phases du confinement. Aucun phénomène cyclique ou saisonnier n’est apparent. On note ensuite une augmentation de la tendance en fin d’année 2021, suite au déconfinement progressif et à la reprise des différents secteurs de la société après la crise sanitaire.
+Le premier graphique combine un histogramme et un Q-Q plot. L’histogramme montre la répartition de la variable t, qui semble suivre une forme en cloche centrée autour de zéro. Cela suggère que les données sont réparties de manière assez équilibrée, comme dans une distribution normale. Le Q-Q plot vient confirmer cette impression : les points suivent bien la diagonale, ce qui signifie que les quantiles de t sont proches de ceux d’une loi normale. En clair, cela veut dire que les données sont « normales » au sens statistique, ce qui est utile pour appliquer certains tests ou modèles.
+
+Le deuxième graphique est un CUSUM, ou graphique de la somme cumulative. Il permet de visualiser les changements dans les déplacements au fil du temps. On y voit deux courbes : une ligne noire en pointillés qui représente les données brutes cumulées, et une ligne rouge plus lisse qui montre la tendance générale. Ce graphique révèle une forte baisse des déplacements dès le début de 2020, suivie de plusieurs fluctuations. Cela correspond aux différentes vagues de Covid et aux mesures sanitaires qui ont été prises.De plus, aucun phénomène cyclique ou saisonnier ne se dégage clairement. En revanche, on note une remontée progressive de la tendance à la fin de l’année 2021, conséquence du déconfinement et de la reprise des différents secteurs de la société après la crise sanitaire.
+
+En résumé, ces deux graphiques confirment que la pandémie a eu un impact fort et durable sur les déplacements professionnels. Les données sont bien distribuées, ce qui permet une analyse fiable, et le CUSUM montre clairement les effets des confinements et du télétravail sur la mobilité.
 
 **Mobilité dans les commerces et loisirs le weekend de 2020 à 2021** (Valentin P)
 
