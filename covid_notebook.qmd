@@ -221,14 +221,14 @@ Le test de tendance, basé sur la série temporelle étudiant l'effet de la Covi
 bla
 
 ```{r}
-covid_work <- ts(covidwj$travail, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
-covid_work <- aggregate(covid_work, 52, FUN = collapse::fmean, ts.eps = 1/52)
+covid_work2 <- ts(covidwj$travail, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
+covid_work2 <- aggregate(covid_work2, 52, FUN = collapse::fmean, ts.eps = 1/52)
 
 set.seed(2000)
-trend_work <- trend.test(covid_work, R = 999)
+trend_work <- trend.test(covid_work2, R = 999)
 plot(trend_work)
 
-local_work <- local.trend(covid_work)
+local_work <- local.trend(covid_work2)
 plot(local_work)
 
 ```
@@ -326,7 +326,7 @@ Enfin, les résidus montrent les variations restantes une fois la tendance et la
 
 En résumé, la mobilité est influencée par une saisonnalité stable et par des événements exceptionnels, principalement les mesures de la pandémie
 
-```{r}
+```{r decomp_work}
 job_extract <- extract(covid_je, components = "filtered")
 plot(job_extract,
   xlab = "Temps",
