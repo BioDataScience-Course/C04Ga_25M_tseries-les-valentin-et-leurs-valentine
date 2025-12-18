@@ -1,5 +1,5 @@
 ---
-title: "Impact de la COVID-19 sur les déplacements de personnes en Wallonie"
+title: "Impact de la COVID-19 sur les déplacements des personnes en Wallonie"
 author: "Alex Godin, Jeff Loiseau, Valentin Picart, Valentin Vandenbosche"
 format:
   pdf:
@@ -26,11 +26,13 @@ En Belgique, le premier cas a été confirmé le 4 février 2020 à Bruxelles [@
 
 La campagne de vaccination, lancée fin 2020, a permis de réduire la gravité des infections et de stabiliser la situation sanitaire en 2022. La phase fédérale de gestion de crise a pris fin en mars 2022, marquant le passage à une surveillance épidémiologique régulière [@centredecrise2022].
 
+Ces mesures ont profondément modifié les comportements quotidiens de la population, en particulier les pratiques de mobilité, rendant nécessaire une analyse détaillée de l’évolution des déplacements durant cette période exceptionnelle.
+
 ## But
 
 <!--% Rédigez le but de ce rapport.-->
 
-Cette recherche vise à examiner les changements dans la mobilité de la population en Wallonie pendant la pandémie de COVID-19 de 2020 à 2022, en utilisant les données de mobilité communautaire de Google. L'objectif est d'illustrer l'influence des diverses restrictions sanitaires sur les habitudes de déplacement en fonction des principaux types d'endroits.
+L'objectif de cette recherche est d'examiner l'effet de la crise sanitaire du COVID-19 sur les déplacements des habitants de Wallonie entre 2020 et 2022, en utilisant les données de mobilité communautaire mises à disposition par Google. L'objectif est plus précisément de mettre en lumière les changements dans les habitudes de déplacement selon les grandes catégories de lieux, et de déterminer les dynamiques temporelles liées aux différentes étapes des restrictions sanitaires.
 
 ## Matériel et méthodes
 
@@ -40,7 +42,7 @@ Nous avons utilisé les *Community Mobility Reports* de Google [@googleMobility2
 
 Les rapports n’étant plus mis à jour depuis octobre 2022, nous avons exploité les données historiques pour la Wallonie sur les années 2020, 2021 et 2022, avec un focus particulier sur 2020 et 2021. Une application interactive [@dimiter2022] permet de visualiser de manière dynamique les données.
 
-Ces données sont exprimées en variation de pourcentage par rapport à une période de référence pré-pandémique, correspondant à la médiane des déplacements observés entre le 3 janvier et le 6 février 2020. Elles sont structurées en six grandes catégories : commerces et loisirs ("com_loi"), épiceries et pharmacies ("alim_pharma"), parcs ("parcs"), transports en commun ("tec"), lieux de travail ("travail")et lieux de résidence ("residence").
+Ces données sont exprimées en variation de pourcentage par rapport à une période de référence pré-pandémique, correspondant à la médiane des déplacements observés entre le 3 janvier et le 6 février 2020. Elles sont structurées en six grandes catégories : commerces et loisirs ("com_loi"), épiceries et pharmacies ("alim_pharma"), parcs ("parcs"), transports en commun ("tec"), lieux de travail ("travail") et lieux de résidence ("residence").
 
 L'analyse est réalisée avec la SciViews Box 2025 dans Saturn Cloud (Linux Ubuntu 22.04), utilisant le logiciel R (r R.version.string). Le package {pastecs} version r packageVersion("pastecs") est utilisé pour étudier la série temporelle.
 
@@ -109,9 +111,7 @@ covid_tec <- aggregate(covid_tec_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
 plot(covid_tec) 
 ```
 
-Une diminution flagrante est observable aux alentours de mi mars 2020, ceci est dû au premier confinement, les transports en commun étaient, presque ou entièrement interrompu. Ensuite, une phase d'augmentation s'en suit et elle durera jusque mai 2020, où une phase de plateau a lieu. Une deuxième diminution progressive jusqu'en 2021 est la cause d'un second confinement (2 novembre 2020). Cela revient à la normale progressivement, et meme un pic plus élevé qu'avant l'arrivée du Covid est observé. Une dernière petite diminution s'établit jusqu'en 2020 suivant ce pic avant de stagner.
-
-#### Décomposition de la série temporelle pour les transports en commun
+Une diminution flagrante est observable aux alentours de mi-mars 2020, ceci est dû au premier confinement, les transports en commun étaient, presque ou entièrement interrompus. Ensuite, une phase d'augmentation s'ensuit et elle durera jusque mai 2020, où une phase de plateau a lieu. Une deuxième diminution progressive jusqu'en 2021 est la cause d'un second confinement (2 novembre 2020). Cela revient à la normale progressivement, et même un pic plus élevé qu'avant l'arrivée du covid est observé. Une dernière petite diminution s'établit jusqu'en 2021 suivante ce pic avant de stagner.
 
 Une décomposition de la série temporelle permet de distinguer la tendance de fond, les variations saisonnières éventuelles et le bruit résiduel.
 
@@ -128,8 +128,6 @@ La composante filtrée (tendance) met en évidence l’évolution générale de 
 
 Enfin, les résidus représentent les variations de court terme qui ne sont pas expliquées par la tendance. Ils oscillent autour de zéro et traduisent des perturbations temporaires.
 
-#### Extraction de la tendance pour les transports en commun
-
 Afin de faciliter l’analyse, il est donc pertinent d’extraire la composante filtrée (tendance) de la série. Cette étape permet de se concentrer uniquement sur la dynamique globale des transports en commun, en éliminant les variations ponctuelles et le bruit résiduel.
 
 ```{r extract tec}
@@ -142,9 +140,9 @@ plot(tec_extract,
 
 L'analyse de la tendance montre une forte baisse de la mobilité dans les transports en commun au début de la période, en lien avec le premier confinement. Une reprise progressive s’observe ensuite au cours de l’année 2020, avant une nouvelle diminution à la fin de l’année lors du renforcement des restrictions. En 2021, la tendance repart à la hausse, indiquant une reprise plus durable de la mobilité, même si le niveau d’avant la pandémie n’est pas totalement retrouvé.
 
-### Mobilité dans les déplacement au travail durant la semaine en 2020–2021
+### Mobilité dans les déplacements au travail durant la semaine en 2020–2021
 
-L’objectif de cette analyse est d’examiner la mobilité des habitants de Wallonie durant la pandémie de 2020–2021. Les données utilisées couvrent la période allant du 15 février 2020 au 31 décembre 2021. Nous nous intéressons uniquement au jour de semaine.
+L’objectif de cette analyse est d’examiner la mobilité des habitants de Wallonie durant la pandémie de 2020–2021. Les données utilisées couvrent la période allant du 15 février 2020 au 31 décembre 2021. Nous nous intéressons uniquement aux jours de semaine.
 
 ```{r work_ts}
 covidwj <- covidw %>% 
@@ -167,9 +165,7 @@ Par la suite, la courbe révèle une succession de hausses et de baisses. Les p�
 
 À l’approche de 2022, la mobilité reste inférieure aux niveaux habituels, oscillant autour de -30 à -40 %. Cela montre que la crise sanitaire a entraîné des changements durables dans les pratiques professionnelles, avec une adoption plus large du télétravail et une réorganisation des modes de déplacement.
 
-#### Analyse de la série temporelle dans les déplacements au travail durant la semaine en 2020–2021
-
-Le but est de détecter une évolution globale (hausse ou baisse) et d’observer les variations locales dans le temps, afin de mieux comprendre l’impact du Covid sur la mobilité.
+Ensuite, on réalise des tests de tendance générale et locale dont le but est de détecter une évolution globale (hausse ou baisse) et d’observer les variations locales dans le temps, afin de mieux comprendre l’impact du Covid sur la mobilité.
 
 ```{r work_trend}
 covid_work2 <- ts(covidwj$travail, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
@@ -190,9 +186,7 @@ Le second graphique, de type CUSUM, met en évidence les variations cumulées de
 
 En somme, ces visualisations confirment l’impact durable de la pandémie sur les déplacements liés au travail, tout en montrant une adaptation progressive des comportements.
 
-#### Extraction de la tendance dans les déplacements au travail durant la semaine en 2020–2021
-
-Ce graphique illustre l’évolution des déplacements professionnels durant la pandémie entre 2020 et 2021. Les données brutes (courbe noire) montrent une chute importante au début de 2020, liée au confinement, suivie de faibles niveaux avec quelques variations. La tendance générale (courbe rouge) confirme cette baisse initiale puis une reprise lente vers fin 2021, correspondant au déconfinement. Les résidus (courbe verte) traduisent des fluctuations ponctuelles dues aux vagues de Covid ou aux mesures sanitaires. Globalement, le graphique met en évidence une baisse marquée suivie d’une reprise progressive perturbée par des événements irréguliers.
+Finalement, une décomposition par les moyennes mobiles est réalisée. Ce graphique illustre l’évolution des déplacements professionnels durant la pandémie entre 2020 et 2021. Les données brutes (courbe noire) montrent une chute importante au début de 2020, liée au confinement, suivie de faibles niveaux avec quelques variations. La tendance générale (courbe rouge) confirme cette baisse initiale puis une reprise lente vers fin 2021, correspondant au déconfinement. Les résidus (courbe verte) traduisent des fluctuations ponctuelles dues aux vagues de Covid ou aux mesures sanitaires. Globalement, le graphique met en évidence une baisse marquée suivie d’une reprise progressive perturbée par des évènements irréguliers.
 
 ```{r}
 covid_je <- tsd(covid_j, method = "average", type = "additive", order = 10, times = 10)
@@ -231,15 +225,15 @@ plot(covid_parcs_tsp,
   main = "Evolution des tendances de mobilité pour les parcs")
 ```
 
-Ce graphique met en évidence plusieurs phases distinctes. Tout d'abors, on voit très clairement une forte chute suivie d'un rebond massif. Ensuite, on voit une deuxième grosse diminution des fréquentations. Finalement, on voit une tendance globale à la hausse puis une décroissance progressive.
+Ce graphique met en évidence plusieurs phases distinctes. Tout d'abord, on voit très clairement une forte chute suivie d'un rebond massif. Ensuite, on voit une deuxième grosse diminution des fréquentations. Finalement, on voit une tendance globale à la hausse puis une décroissance progressive.
 
-Pour caractériser et mieux dater ces fluctuations pour pouvoir les interpréter, on réalise une analyse local.
+Pour caractériser et mieux dater ces fluctuations pour pouvoir les interpréter, on réalise une analyse locale.
 
 ```{r parcs local}
 covid_parcs_local <- local.trend(covid_parcs_tsp)
 ```
 
-Ce graphique de tendance locale illustre clairement l'effet fort et non linéaire de la pandémie sur la visite des parcs en Wallonie de 2020 à 2021. Suite à une chute nette de la tendance au début de l'année 2020, en lien avec le premier confinement et les restrictions de mobilité, on a constaté un retournement soudain au printemps 2020. Cela reflète une réémergence d'intérêt pour les espaces verts pendant les phases de déconfinement. L'évolution baisse à nouveau à l'automne 2020 et au commencement de 2021, une période caractérisée par de nouvelles vagues d'épidémie et le resserrement des mesures sanitaires. Depuis le printemps 2021, la courbe lissée indique une augmentation continue et durable de la fréquentation des parcs, qui a culminé durant l'été 2021 avant de connaître une petite baisse dûe à l'arrivée de l'automne.
+Ce graphique de tendance locale illustre clairement l'effet fort et non linéaire de la pandémie sur la visite des parcs en Wallonie de 2020 à 2021. Suite à une chute nette de la tendance au début de l'année 2020, en lien avec le premier confinement et les restrictions de mobilité, on a constaté un retournement soudain au printemps 2020. Cela reflète une réémergence d'intérêt pour les espaces verts pendant les phases de déconfinement. L'évolution baisse à nouveau à l'automne 2020 et au commencement de 2021, une période caractérisée par de nouvelles vagues d'épidémie et le resserrement des mesures sanitaires. Depuis le printemps 2021, la courbe lissée indique une augmentation continue et durable de la fréquentation des parcs, qui a culminé durant l'été 2021 avant de connaître une petite baisse due à l'arrivée de l'automne.
 
 Globalement, cette étude démontre que les parcs ont occupé une place cruciale en tant qu'espaces de détente pendant la crise sanitaire, leur fréquentation étant fortement influencée par le degré des restrictions, mais s'inscrivant progressivement dans une tendance durable d'utilisation des espaces verts.
 
@@ -253,20 +247,20 @@ covidw_tsp <- aggregate(covidw_com_loi_ts, 52, FUN = collapse::fmean, ts.eps = 1
 plot(covidw_tsp,
   xlab = "Temps",
   ylab = "Tendance de mobilité pour les commerces et loisirs",
-  main = "Tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, semaine)")
+  main = "Tendances de mobilité pour les commerces et loisirs en 2020-2021 (semaine)")
 covidwe_com_loi_ts <- ts(covidwe$com_loi, start = c(2020, 46), end = c(2021, 365), frequency = 365)
 covidwe_tsp <- aggregate(covidwe_com_loi_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
 plot(covidwe_tsp,
   xlab = "Temps",
   ylab = "Tendance de mobilité pour les commerces et loisirs",
-  main = "Tendances de mobilité pour les commerces et loisirs durant la période Covid (2020-2021, week-end)")
+  main = "Tendances de mobilité pour les commerces et loisirs en 2020-2021 (week-end)")
 ```
 
 Les graphiques montrent une forte baisse de la mobilité dans les commerces et loisirs dès mars 2020, en lien direct avec le premier confinement. Cette diminution est visible aussi bien en semaine que le week-end, mais elle est plus marquée durant les week-ends, périodes habituellement consacrées aux activités de loisirs.
 
 Une reprise progressive s’observe à partir du printemps–été 2020, particulièrement le week-end, sans toutefois atteindre le niveau de référence pré-pandémique. À l’automne 2020, le second confinement entraîne une nouvelle chute de fréquentation, confirmant la forte dépendance de ce type de mobilité aux mesures sanitaires.
 
-#### Ananalyse de la série temporelle pour les commerces et loisirs
+Pour peaufiner cette analyse, des analyses de tendances générales sont réalisées pour les deux situations.
 
 ```{r}
 set.seed(1826)
@@ -280,7 +274,7 @@ plot(trendwe_com_loi)
 
 Les tests de tendance appliqués à la mobilité dans les commerces et loisirs en Wallonie entre 2020 et 2021 révèlent une reprise significative. Cette reprise est plus marquée le week-end, traduisant une relance des activités récréatives. En semaine, la tendance est également positive mais plus modérée, en lien avec une reprise économique partielle avec des contraintes persistantes (télétravail...). Ces résultats confirment que les effets de la pandémie sur la mobilité ont été progressivement atténués, avec des dynamiques différentes selon les jours.
 
-#### Décomposition de la série et extraction de la tendance pour la mobilité des comerces et loisirs en 2020-2021
+Finalement une décomposition par les moyennes mobiles est réalsée pour finaliser cette analyse.
 
 ```{r}
 decompw_com_loi <- tsd(covidw_tsp, method = "average", type = "additive", order = 6, times = 10)
@@ -309,5 +303,7 @@ Les tendances filtrées extraites des séries hebdomadaires montrent que la mobi
 L'étude des données de déplacement en Wallonie de 2020 à 2021 souligne nettement l'influence considérable de la crise sanitaire du COVID-19 et des restrictions sanitaires sur les habitudes de mobilité. Toutes les formes de déplacement examinées montrent des baisses abruptes lors des périodes de confinement, suivies de phases de redressement qui varient en netteté selon les emplacements pris en compte. L'impact des restrictions de mouvement et du télétravail intensif se traduit principalement par les perturbations durables dans les transports publics et les déplacements professionnels. En revanche, l'affluence dans les parcs et les espaces verts présente une dynamique spécifique, avec des pics significatifs lors des périodes de déconfinement, mettant en évidence leur importance en tant que lieux de loisir à faible risque pour la santé.
 
 Les évaluations de tendance, de tendance locale et les décompositions temporelles corroborent la nature non stationnaire des séries ainsi que l'absence de saisonnalité prononcée, au bénéfice des dynamiques dominées par les décisions politiques et la situation sanitaire. Cependant, la reprise notée en 2021 n'est pas totale pour certains domaines, laissant suggérer des modifications durables dans les comportements de déplacement. Ce travail met en évidence l'importance des données de mobilité provenant de sources numériques pour évaluer rapidement l'impact des crises sanitaires à grande échelle. Il souligne également la nécessité d'enrichir ces évaluations avec des données socio-économiques ou météorologiques pour mieux comprendre les comportements observés.
+
+Certaines parties de ce rapport ont été générées ou révisées à l’aide d’outils d’intelligence artificielle afin de faciliter la rédaction et la structuration des informations.
 
 ## Bibliographie
