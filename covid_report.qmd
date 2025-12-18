@@ -36,9 +36,9 @@ L’objectif de cette étude est d’analyser l’évolution de la mobilité de 
 
 <!--% Cette section doit comprendre deux parties. La première partie doit expliciter le données employées et la seconde traiter des analyses réalisées et des logiciels employés.-->
 
-Nous avons utilisé les *Community Mobility Reports* de Google, basés sur des données anonymisées de Google Maps, afin d’analyser les variations de mobilité liées aux mesures COVID-19.
+Nous avons utilisé les *Community Mobility Reports* de Google [@googleMobility2022], basés sur des données anonymisées de Google Maps, afin d’analyser les variations de mobilité liées aux mesures COVID-19.
 
-Les rapports n’étant plus mis à jour depuis octobre 2022, nous avons exploité les données historiques pour la Wallonie sur les années 2020, 2021 et 2022, avec un focus particulier sur 2020 et 2021. Une application interactive est disponible à l'adresse suivante <https://dimiter.shinyapps.io/covid-19_mobility/> , permet de visualiser de manière dynamique les données.
+Les rapports n’étant plus mis à jour depuis octobre 2022, nous avons exploité les données historiques pour la Wallonie sur les années 2020, 2021 et 2022, avec un focus particulier sur 2020 et 2021. Une application interactive [@dimiter2022] permet de visualiser de manière dynamique les données.
 
 Ces données sont exprimées en variation de pourcentage par rapport à une période de référence pré-pandémique, correspondant à la médiane des déplacements observés entre le 3 janvier et le 6 février 2020. Elles sont structurées en six grandes catégories : commerces et loisirs ("com_loi"), épiceries et pharmacies ("alim_pharma"), parcs ("parcs"), transports en commun ("tec"), lieux de travail ("travail")et lieux de résidence ("residence").
 
