@@ -97,6 +97,22 @@ covidwe_ts2 <- aggregate(covidwe_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
 
 ### Mobilité dans les transports en commun en 2020–2021
 
+Afin d’étudier l’évolution de la mobilité liée aux transports en commun (TEC) de la période 2020-2021, les données quotidiennes ont d’abord été transformées en série temporelle. La série est définie à partir du jour 46 de l’année 2020 jusqu’à la fin de l’année 2021, avec une fréquence journalière.
+
+Dans un second temps, les données quotidiennes ont été agrégées à une fréquence hebdomadaire (52 périodes par an) à l’aide d’une moyenne, afin de lisser les variations journalières et de faciliter l’analyse des tendances générales.
+
+Le graphique obtenu représente ainsi l’évolution moyenne hebdomadaire de la mobilité dans les TEC sur la période étudiée, permettant d’identifier plus clairement les phases de diminution et de reprise de la fréquentation en lien avec les différentes vagues de la pandémie et les mesures sanitaires associées.
+
+```{r covid ts}
+covid_tec_ts <- ts(covid$tec, start = c(2020, 46),  end = c(2021, 365), frequency = 365)
+covid_tec <- aggregate(covid_tec_ts, 52, FUN = collapse::fmean, ts.eps = 1/52)
+plot(covid_tec) 
+```
+
+Une diminution flagrante est observable aux alentours de mi mars 2020, ceci est dû au premier confinement, les transports en commun étaient, presque ou entièrement interrompu. Ensuite, une phase d'augmentation s'en suit et elle durera jusque mai 2020, où une phase de plateau a lieu. Une deuxième diminution progressive jusqu'en 2021 est la cause d'un second confinement (2 novembre 2020). Cela revient à la normale progressivement, et meme un pic plus élevé qu'avant l'arrivée du Covid est observé. Une dernière petite diminution s'établit jusqu'en 2020 suivant ce pic avant de stagner.
+
+#### Décomposition de la série temporelle pour les transports en commun
+
 Une décomposition de la série temporelle permet de distinguer la tendance de fond, les variations saisonnières éventuelles et le bruit résiduel.
 
 Pour cela, une décomposition additive de la série est réalisée à l’aide de la fonction tsd(), ce qui facilite l’interprétation des différentes composantes de la mobilité dans les transports en commun.
@@ -112,7 +128,9 @@ La composante filtrée (tendance) met en évidence l’évolution générale de 
 
 Enfin, les résidus représentent les variations de court terme qui ne sont pas expliquées par la tendance. Ils oscillent autour de zéro et traduisent des perturbations temporaires.
 
-Afin de faciliter l’analyse, il est donc pertinent d’extraire la composante lissée de la série. Cette étape permet de se concentrer uniquement sur la dynamique globale des transports en commun, en éliminant les variations ponctuelles et le bruit résiduel.
+#### Extraction de la tendance pour les transports en commun
+
+Afin de faciliter l’analyse, il est donc pertinent d’extraire la composante filtrée (tendance) de la série. Cette étape permet de se concentrer uniquement sur la dynamique globale des transports en commun, en éliminant les variations ponctuelles et le bruit résiduel.
 
 ```{r extract tec}
 tec_extract <- extract(decomp_tec, components = "filtered")
