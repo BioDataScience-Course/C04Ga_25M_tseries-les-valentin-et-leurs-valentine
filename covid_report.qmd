@@ -30,7 +30,7 @@ La campagne de vaccination, lancée fin 2020, a permis de réduire la gravité d
 
 <!--% Rédigez le but de ce rapport.-->
 
-L’objectif de cette étude est d’analyser l’évolution de la mobilité de la population en Wallonie durant la pandémie de COVID-19 entre 2020 et 2022, à partir des données de mobilité communautaire de Google, afin de mettre en évidence l’impact des différentes mesures sanitaires sur les comportements de déplacement selon les principaux types de lieux.
+Cette recherche vise à examiner les changements dans la mobilité de la population en Wallonie pendant la pandémie de COVID-19 de 2020 à 2022, en utilisant les données de mobilité communautaire de Google. L'objectif est d'illustrer l'influence des diverses restrictions sanitaires sur les habitudes de déplacement en fonction des principaux types d'endroits.
 
 ## Matériel et méthodes
 
@@ -48,7 +48,9 @@ L'analyse est réalisée avec la SciViews Box 2025 dans Saturn Cloud (Linux Ubun
 
 <!--% Présentez les analyses les plus pertinents que vous avez sélectionnés. Structurez la section en partie avec des titres explicites de niveau trois.-->
 
-```{r setup}
+### Importation des données
+
+```{r setup, include=FALSE}
 # Nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
 if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
@@ -56,13 +58,11 @@ if (!"tools:tests" %in% search())
 SciViews::R("ts", lang = "fr")
 ```
 
-```{r Import}
-# Importation
+```{r import}
 covid <- read("data/mobility_wallonia.rds")
 ```
 
-```{r Cleaning}
-#Nettoyage du tableau
+```{r cleaning}
 covid <- covid %>%
   rename(com_loi = retail_and_recreation_percent_change_from_baseline,
     alim_pharma = grocery_and_pharmacy_percent_change_from_baseline,
@@ -72,7 +72,7 @@ covid <- covid %>%
     residence = residential_percent_change_from_baseline)
 ```
 
-```{r Week}
+```{r week}
 # Copie de la série initiale sous une autre nom
 covidw <- covid
 # Calcul des jours de la semaine
@@ -239,7 +239,9 @@ Pour caractériser et mieux dater ces fluctuations pour pouvoir les interpréter
 covid_parcs_local <- local.trend(covid_parcs_tsp)
 ```
 
-L’analyse de la tendance locale met en évidence une succession de régimes temporels dans la fréquentation des parcs en Wallonie entre 2020 et 2021. Après une phase initiale de baisse marquée correspondant au premier confinement, un retournement brutal de tendance est observé au printemps 2020, traduisant un recours accru aux espaces verts lors du déconfinement. Cette dynamique est suivie d’une nouvelle phase de repli à l’automne 2020, puis d’une reprise plus progressive et durable en 2021. Ces résultats confirment le caractère non stationnaire de la série et soulignent l’adaptation progressive des comportements de mobilité au contexte sanitaire.
+Ce graphique de tendance locale illustre clairement l'effet fort et non linéaire de la pandémie sur la visite des parcs en Wallonie de 2020 à 2021. Suite à une chute nette de la tendance au début de l'année 2020, en lien avec le premier confinement et les restrictions de mobilité, on a constaté un retournement soudain au printemps 2020. Cela reflète une réémergence d'intérêt pour les espaces verts pendant les phases de déconfinement. L'évolution baisse à nouveau à l'automne 2020 et au commencement de 2021, une période caractérisée par de nouvelles vagues d'épidémie et le resserrement des mesures sanitaires. Depuis le printemps 2021, la courbe lissée indique une augmentation continue et durable de la fréquentation des parcs, qui a culminé durant l'été 2021 avant de connaître une petite baisse dûe à l'arrivée de l'automne.
+
+Globalement, cette étude démontre que les parcs ont occupé une place cruciale en tant qu'espaces de détente pendant la crise sanitaire, leur fréquentation étant fortement influencée par le degré des restrictions, mais s'inscrivant progressivement dans une tendance durable d'utilisation des espaces verts.
 
 ### Mobilité pour les commerces et loisirs en 2020-2021
 
@@ -304,6 +306,8 @@ Les tendances filtrées extraites des séries hebdomadaires montrent que la mobi
 
 <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
 
-remerciements :
+L'étude des données de déplacement en Wallonie de 2020 à 2021 souligne nettement l'influence considérable de la crise sanitaire du COVID-19 et des restrictions sanitaires sur les habitudes de mobilité. Toutes les formes de déplacement examinées montrent des baisses abruptes lors des périodes de confinement, suivies de phases de redressement qui varient en netteté selon les emplacements pris en compte. L'impact des restrictions de mouvement et du télétravail intensif se traduit principalement par les perturbations durables dans les transports publics et les déplacements professionnels. En revanche, l'affluence dans les parcs et les espaces verts présente une dynamique spécifique, avec des pics significatifs lors des périodes de déconfinement, mettant en évidence leur importance en tant que lieux de loisir à faible risque pour la santé.
 
-merci le chat
+Les évaluations de tendance, de tendance locale et les décompositions temporelles corroborent la nature non stationnaire des séries ainsi que l'absence de saisonnalité prononcée, au bénéfice des dynamiques dominées par les décisions politiques et la situation sanitaire. Cependant, la reprise notée en 2021 n'est pas totale pour certains domaines, laissant suggérer des modifications durables dans les comportements de déplacement. Ce travail met en évidence l'importance des données de mobilité provenant de sources numériques pour évaluer rapidement l'impact des crises sanitaires à grande échelle. Il souligne également la nécessité d'enrichir ces évaluations avec des données socio-économiques ou météorologiques pour mieux comprendre les comportements observés.
+
+## Bibliographie
