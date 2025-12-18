@@ -273,15 +273,10 @@ plot(trendw_com_loi)
 set.seed(9872)
 trendwe_com_loi <- trend.test(covidwe_tsp, R = 999)
 plot(trendwe_com_loi)
-acf(covidw_tsp)
-acf(covidwe_tsp)
-spectrum(covidw_tsp, spans = c(3, 5))
-spectrum(covidwe_tsp, spans = c(3, 5))
-covidw_tsp_local <- local.trend(covidw_tsp)
-covidwe_tsp_local <- local.trend(covidwe_tsp)
+
 ```
 
-Les analyses statistiques menées sur la mobilité dans les commerces et loisirs en Wallonie entre 2020 et 2021 révèlent une reprise progressive après les chutes brutales observées en 2020, notamment lors des confinements. Les tests de tendance confirment une évolution positive, plus marquée le week-end, traduisant une relance des activités récréatives, tandis que la reprise en semaine reste plus modérée, en lien avec une activité économique partiellement restaurée et des contraintes persistantes comme le télétravail. L’analyse des fonctions d’autocorrélation et des spectres de densité met en évidence une tendance lente, sans saisonnalité forte, mais avec une inertie temporelle significative. Les jours de semaine présentent une structure temporelle plus régulière, alors que les week-ends sont davantage influencés par des événements ponctuels. Enfin, les tendances locales confirment ces dynamiques différenciées selon les jours, soulignant l’importance de segmenter l’analyse pour mieux comprendre l’impact des mesures sanitaires sur les comportements de mobilité.
+Les tests de tendance appliqués à la mobilité dans les commerces et loisirs en Wallonie entre 2020 et 2021 révèlent une reprise significative. Cette reprise est plus marquée le week-end, traduisant une relance des activités récréatives. En semaine, la tendance est également positive mais plus modérée, en lien avec une reprise économique partielle avec des contraintes persistantes (télétravail...). Ces résultats confirment que les effets de la pandémie sur la mobilité ont été progressivement atténués, avec des dynamiques différentes selon les jours.
 
 #### Décomposition de la série et extraction de la tendance pour la mobilité des comerces et loisirs en 2020-2021
 
