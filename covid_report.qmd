@@ -304,6 +304,6 @@ L'étude des données de déplacement en Wallonie de 2020 à 2021 souligne nette
 
 Les évaluations de tendance, de tendance locale et les décompositions temporelles corroborent la nature non stationnaire des séries ainsi que l'absence de saisonnalité prononcée, au bénéfice des dynamiques dominées par les décisions politiques et la situation sanitaire. Cependant, la reprise notée en 2021 n'est pas totale pour certains domaines, laissant suggérer des modifications durables dans les comportements de déplacement. Ce travail met en évidence l'importance des données de mobilité provenant de sources numériques pour évaluer rapidement l'impact des crises sanitaires à grande échelle. Il souligne également la nécessité d'enrichir ces évaluations avec des données socio-économiques ou météorologiques pour mieux comprendre les comportements observés.
 
-Certaines parties de ce rapport ont été générées ou révisées à l’aide d’outils d’intelligence artificielle afin de faciliter la rédaction et la structuration des informations.
+Certaines parties de ce rapport ont été révisées à l’aide d’outils d’intelligence artificielle afin de faciliter la rédaction et la structuration des informations.
 
 ## Bibliographie
