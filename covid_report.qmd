@@ -136,7 +136,7 @@ covid_parcs_local <- local.trend(covid_parcs_tsp)
 
 En conclusion
 
-### Mobilité dans 
+### Mobilité dans
 
 ## Discussion et Conclusion
 
