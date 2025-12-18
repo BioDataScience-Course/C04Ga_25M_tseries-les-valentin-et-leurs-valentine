@@ -141,19 +141,15 @@ plot(covid_parcs_tsp,
   main = "Evolution des tendances de mobilité pour les parcs")
 ```
 
-Ce graphique met en évidence plusieurs phases distinctes. Tout d'abors, on voit très clairement une forte chute suivie d'un rebond massif.
+Ce graphique met en évidence plusieurs phases distinctes. Tout d'abors, on voit très clairement une forte chute suivie d'un rebond massif. Ensuite, on voit une deuxième grosse diminution des fréquentations. Finalement, on voit une tendance globale à la hausse puis une décroissance progressive.
 
-2\) A partir de l'automne 2020, on voit une chute rapide des fréquentations.
-
-3\) En 2021, on voit une tendance globale à la hausse puis une décroissance progressive en fin d'année.
-
-pour pousuivre cette analyse on fait ...
+Pour caractériser et mieux dater ces fluctuations pour pouvoir les interpréter, on réalise une analyse local.
 
 ```{r parcs local}
 covid_parcs_local <- local.trend(covid_parcs_tsp)
 ```
 
-En conclusion
+L’analyse de la tendance locale met en évidence une succession de régimes temporels dans la fréquentation des parcs en Wallonie entre 2020 et 2021. Après une phase initiale de baisse marquée correspondant au premier confinement, un retournement brutal de tendance est observé au printemps 2020, traduisant un recours accru aux espaces verts lors du déconfinement. Cette dynamique est suivie d’une nouvelle phase de repli à l’automne 2020, puis d’une reprise plus progressive et durable en 2021. Ces résultats confirment le caractère non stationnaire de la série et soulignent l’adaptation progressive des comportements de mobilité au contexte sanitaire.
 
 ### Mobilité dans
 
